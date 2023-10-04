@@ -28,5 +28,10 @@ public class Employee {
     @Column(name = "is_operator")
     private boolean is_operator;
 
+    public Employee(Long employee_id,boolean is_operator){
+        this.employee_id = employee_id;
+        this.is_operator = is_operator;
+    }
+
 
 }
