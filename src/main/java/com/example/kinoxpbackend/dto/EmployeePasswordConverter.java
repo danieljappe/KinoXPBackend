@@ -1,7 +1,9 @@
 package com.example.kinoxpbackend.dto;
 
 import com.example.kinoxpbackend.model.Employee;
+import org.springframework.stereotype.Component;
 
+@Component
 public class EmployeePasswordConverter {
     public Employee toEntity(EmployeePasswordDTO employeePasswordDTO){
         return new Employee(employeePasswordDTO.employee_id(),
