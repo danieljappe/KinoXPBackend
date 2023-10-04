@@ -13,21 +13,21 @@ import java.util.List;
 @org.springframework.web.bind.annotation.RestController
 public class MovieRestController {
 
-  @Autowired
-  MovieService movieService;
+    @Autowired
+    MovieService movieService;
 
 
-  @GetMapping("/movies")
-  public ResponseEntity<List<Movie>> getAllMovies(){
-    List<Movie> movies = movieService.getAllMovies();
-    return new ResponseEntity<>(movies,HttpStatus.OK);
-  }
+    @GetMapping("/movies")
+    public ResponseEntity<List<Movie>> getAllMovies() {
+        List<Movie> movies = movieService.getAllMovies();
+        return new ResponseEntity<>(movies, HttpStatus.OK);
+    }
 
-  @PostMapping("/movie")
-  public ResponseEntity<Movie> postMovie(@RequestBody Movie movie){
-    Movie createdMovie = movieService.createMovie(movie);
-    return new ResponseEntity<>(createdMovie, HttpStatus.CREATED);
-  }
+    @PostMapping("/movie")
+    public ResponseEntity<Movie> postMovie(@RequestBody Movie movie) {
+        Movie createdMovie = movieService.createMovie(movie);
+        return new ResponseEntity<>(createdMovie, HttpStatus.CREATED);
+    }
 
 
 }
