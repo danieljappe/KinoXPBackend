@@ -18,7 +18,7 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "employee_id")
-    private Long employee_id;
+    private Long employeeId;
 
     @Column(name = "employee_password")
     private String employee_password;
@@ -26,8 +26,8 @@ public class Employee {
     @Column(name = "is_operator")
     private boolean is_operator;
 
-    public Employee(Long employee_id,boolean is_operator){
-        this.employee_id = employee_id;
+    public Employee(Long employeeId, boolean is_operator){
+        this.employeeId = employeeId;
         this.is_operator = is_operator;
     }
 

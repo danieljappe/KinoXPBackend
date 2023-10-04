@@ -8,6 +8,6 @@ import java.util.List;
 @org.springframework.stereotype.Repository
 public interface MovieRepository extends JpaRepository<Movie, Integer>{ //todo: Set type of JpaRepository
 
-    List<Movie> findAllByMovie_name(String movie_name);
+    List<Movie> findAllByMovieName(String movie_name);
 
 }

@@ -25,7 +25,7 @@ public class Movie {
     private Long movie_id;
 
     @Column(name = "movie_name")
-    private String movie_name;
+    private String movieName;
 
     @Column(name = "movie_description")
     private String movie_description;
