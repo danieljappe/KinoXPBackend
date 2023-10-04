@@ -13,11 +13,8 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="movie")
+@Table(name = "movie")
 public class Movie {
-
-
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
