@@ -29,5 +29,9 @@ public class MovieRestController {
         return new ResponseEntity<>(createdMovie, HttpStatus.CREATED);
     }
 
-
+    @PutMapping("/movie/{movie_id}")
+    public ResponseEntity<Movie> updateMovie(@PathVariable("movie_id") int id, @RequestBody Movie movie) {
+        Movie updatedMovie = movieService.updateMovie(id, movie);
+        return new ResponseEntity<>(updatedMovie, HttpStatus.OK);
+    }
 }
