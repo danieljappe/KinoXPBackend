@@ -17,9 +17,12 @@ import java.util.Set;
 public class Seat {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "seat_id")
     private Long seatId;
 
+
+    //row-seatnum
     @Column(name = "seat_number")
     private String seatNumber;
 

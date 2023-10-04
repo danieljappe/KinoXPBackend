@@ -20,6 +20,7 @@ public class Showing {
 
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "showing_id")
     private Long showingId;
 
