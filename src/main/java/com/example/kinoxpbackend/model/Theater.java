@@ -18,13 +18,13 @@ public class Theater {
 
     @Id
     @Column(name = "theater_id")
-    private Long theater_id;
+    private Long theaterId;
 
     @Column(name = "theater_number")
-    private int theater_number;
+    private int theaterNumber;
 
     @Column(name = "total_seats")
-    private int total_seats;
+    private int totalSeats;
 
     @OneToMany(mappedBy = "theater", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Showing> showings;

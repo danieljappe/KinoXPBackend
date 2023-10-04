@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 public class EmployeeConverter {
 
     public EmployeeDTO toDTO(Employee employee){
-        return new EmployeeDTO(employee.getEmployeeId(), employee.is_operator());
+        return new EmployeeDTO(employee.getEmployeeId(), employee.isOperator());
     }
 
     public Employee toEmployee(EmployeeDTO employeeDTO){

@@ -18,7 +18,7 @@ public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ticket_id")
-    private Long ticket_id;
+    private Long ticketId;
 
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

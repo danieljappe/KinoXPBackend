@@ -18,7 +18,7 @@ public class Customer {
 
     @Id
     @Column(name = "customer_phone")
-    private String customer_phone;
+    private String customerPhone;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Ticket> tickets;

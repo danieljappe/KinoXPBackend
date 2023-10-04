@@ -21,7 +21,7 @@ public class Showing {
 
     @Id
     @Column(name = "showing_id")
-    private Long showing_id;
+    private Long showingId;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "movie_id", nullable = false)
@@ -32,7 +32,7 @@ public class Showing {
     private Theater theater;
 
     @Column(name = "showing_date_time")
-    private LocalDateTime showing_date_time;
+    private LocalDateTime showingDateTime;
 
 
     @OneToMany(mappedBy = "showing", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

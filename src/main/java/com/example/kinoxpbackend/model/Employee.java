@@ -21,14 +21,14 @@ public class Employee {
     private Long employeeId;
 
     @Column(name = "employee_password")
-    private String employee_password;
+    private String employeePassword;
 
     @Column(name = "is_operator")
-    private boolean is_operator;
+    private boolean isOperator;
 
-    public Employee(Long employeeId, boolean is_operator){
+    public Employee(Long employeeId, boolean isOperator){
         this.employeeId = employeeId;
-        this.is_operator = is_operator;
+        this.isOperator = isOperator;
     }
 
 

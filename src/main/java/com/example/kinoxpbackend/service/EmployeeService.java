@@ -30,7 +30,7 @@ public class EmployeeService {
     public EmployeeDTO checkEmployee(EmployeePasswordDTO employeePasswordDTO){
         Employee employee = employeePasswordConverter.toEntity(employeePasswordDTO);
         Optional<Employee> optEmployee = Optional.ofNullable(employeeRepository.findByEmployeeId(employee.getEmployeeId()));
-        if (optEmployee.isPresent()&& Objects.equals(optEmployee.get().getEmployee_password(), employee.getEmployee_password())){
+        if (optEmployee.isPresent()&& Objects.equals(optEmployee.get().getEmployeePassword(), employee.getEmployeePassword())){
             return employeeConverter.toDTO(optEmployee.get());
         }else {
             throw  new RuntimeException("wrong credentials");
