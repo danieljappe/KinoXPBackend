@@ -1,7 +1,9 @@
 package com.example.kinoxpbackend.dto;
 
 import com.example.kinoxpbackend.model.Employee;
+import org.springframework.stereotype.Component;
 
+@Component
 public class EmployeeConverter {
 
     public EmployeeDTO toDTO(Employee employee){
