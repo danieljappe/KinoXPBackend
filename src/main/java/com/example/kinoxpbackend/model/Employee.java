@@ -31,10 +31,5 @@ public class Employee {
         this.isOperator = isOperator;
     }
 
-    public Employee(Long employee_id,boolean is_operator){
-        this.employee_id = employee_id;
-        this.is_operator = is_operator;
-    }
-
 
 }
