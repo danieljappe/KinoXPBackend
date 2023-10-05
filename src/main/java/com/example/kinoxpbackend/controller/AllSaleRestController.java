@@ -4,6 +4,7 @@ package com.example.kinoxpbackend.controller;
 import com.example.kinoxpbackend.dtoSale.SaleDTO;
 import com.example.kinoxpbackend.dtoSale.SaleItemDTO;
 import com.example.kinoxpbackend.service.AllSaleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,14 +13,11 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 @RequestMapping("/api/sales")
 public class AllSaleRestController {
-    private final AllSaleService allSaleService;
+    @Autowired
+    AllSaleService allSaleService;
 
-    public AllSaleRestController(AllSaleService allSaleService) {
-        this.allSaleService = allSaleService;
-    }
 
     // rest controller til sale
-
     @PostMapping
     public ResponseEntity<SaleDTO> createSale(@RequestBody SaleDTO saleDTO) {
         SaleDTO createdSale = allSaleService.createSale(saleDTO);
