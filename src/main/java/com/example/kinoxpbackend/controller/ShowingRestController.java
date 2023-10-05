@@ -27,10 +27,22 @@ public class ShowingRestController {
 
 
     @PostMapping("/showing")
-    public ResponseEntity<Showing> postSho(@RequestBody Showing showing) {
+    public ResponseEntity<Showing> postShowing(@RequestBody Showing showing) {
         Showing createdShowing = showingService.createShowing(showing);
         return new ResponseEntity<>(createdShowing, HttpStatus.CREATED);
     }
 
+
+    @PutMapping("/showing/{showing_id}")
+    public ResponseEntity<Showing> updateMovie(@PathVariable("showing_id") Long id, @RequestBody Showing showing) {
+        Showing updatedShowing = showingService.updateShowing(id, showing);
+        return new ResponseEntity<>(updatedShowing, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/showing/{showing_id}")
+    public ResponseEntity<Showing> deleteMovie(@PathVariable("showing_id") Long id){
+        Showing deletedShowing = showingService.deleteShowingById(id);
+        return new ResponseEntity<>(deletedShowing, HttpStatus.NO_CONTENT);
+    }
 
 }
