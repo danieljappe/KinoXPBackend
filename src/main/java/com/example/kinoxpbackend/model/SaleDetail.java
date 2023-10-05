@@ -29,4 +29,5 @@ public class SaleDetail {
 
     @Column(name = "quantity")
     private int quantity;
+
 }

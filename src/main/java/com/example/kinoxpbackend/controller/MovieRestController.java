@@ -34,4 +34,10 @@ public class MovieRestController {
         Movie updatedMovie = movieService.updateMovie(id, movie);
         return new ResponseEntity<>(updatedMovie, HttpStatus.OK);
     }
+
+    @DeleteMapping("/movie/{movie_id}")
+    public ResponseEntity<Void> deleteMovie(@PathVariable("movie_id") int id){
+        movieService.deleteMovieById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }
