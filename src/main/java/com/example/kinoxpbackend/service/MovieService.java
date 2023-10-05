@@ -46,4 +46,13 @@ public class MovieService {
             throw new Error("Movie with the ID:  " + id + ", does not exist");
         }
     }
+
+    public void deleteMovieById(int id) {
+        Optional<Movie> movieOpt = movieRepository.findById(id);
+        if (movieOpt.isPresent()){
+            movieRepository.deleteById(id);
+        } else {
+            throw new Error("Movie with the ID:  " + id + ", does not exist");
+        }
+    }
 }
