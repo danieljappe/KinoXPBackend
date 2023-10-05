@@ -1,5 +1,7 @@
 package com.example.kinoxpbackend.service;
 
+import com.example.kinoxpbackend.dtoShowing.ShowingConverter;
+import com.example.kinoxpbackend.dtoShowing.ShowingDTO;
 import com.example.kinoxpbackend.model.Movie;
 import com.example.kinoxpbackend.model.Showing;
 import com.example.kinoxpbackend.repository.ShowingRepository;
@@ -16,14 +18,17 @@ public class ShowingService {
     @Autowired
     ShowingRepository showingRepository;
 
+    @Autowired
+    ShowingConverter showingConverter;
+
     public List<Showing> getAllShowings(){
         return showingRepository.findAll();
     }
 
-    public Showing getShowingById(Long id){
+    public ShowingDTO getShowingById(Long id){
         Optional<Showing> optionalShowing = showingRepository.findById(id);
         if (optionalShowing.isPresent()){
-            return optionalShowing.get();
+            return showingConverter.toDTO(optionalShowing.get());
         }else {
             throw new Error("Showing with the ID:  " + id + ", does not exist");
         }

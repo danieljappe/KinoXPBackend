@@ -1,5 +1,6 @@
 package com.example.kinoxpbackend.controller;
 
+import com.example.kinoxpbackend.dtoShowing.ShowingDTO;
 import com.example.kinoxpbackend.model.Movie;
 import com.example.kinoxpbackend.model.Showing;
 import com.example.kinoxpbackend.service.ShowingService;
@@ -26,9 +27,9 @@ public class ShowingRestController {
     }
 
     @GetMapping("/showing/{showing_id}")
-    public ResponseEntity<Showing> getShowingById(@PathVariable("showing_id") Long showing_id){
-        Showing showing = showingService.getShowingById(showing_id);
-        return new ResponseEntity<>(showing,HttpStatus.OK);
+    public ResponseEntity<ShowingDTO> getShowingById(@PathVariable("showing_id") Long showing_id){
+        ShowingDTO showingDTO = showingService.getShowingById(showing_id);
+        return new ResponseEntity<>(showingDTO,HttpStatus.OK);
     }
 
 
