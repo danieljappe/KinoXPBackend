@@ -25,6 +25,12 @@ public class ShowingRestController {
         return new ResponseEntity<>(showings, HttpStatus.OK);
     }
 
+    @GetMapping("/showing/{showing_id}")
+    public ResponseEntity<Showing> getShowingById(@PathVariable("showing_id") Long showing_id){
+        Showing showing = showingService.getShowingById(showing_id);
+        return new ResponseEntity<>(showing,HttpStatus.OK);
+    }
+
 
     @PostMapping("/showing")
     public ResponseEntity<Showing> postShowing(@RequestBody Showing showing) {

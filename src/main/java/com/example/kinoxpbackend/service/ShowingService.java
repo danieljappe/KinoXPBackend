@@ -20,6 +20,15 @@ public class ShowingService {
         return showingRepository.findAll();
     }
 
+    public Showing getShowingById(Long id){
+        Optional<Showing> optionalShowing = showingRepository.findById(id);
+        if (optionalShowing.isPresent()){
+            return optionalShowing.get();
+        }else {
+            throw new Error("Showing with the ID:  " + id + ", does not exist");
+        }
+    }
+
     public Showing createShowing(Showing showing){
         return showingRepository.save(showing);
     }
