@@ -18,10 +18,10 @@ public class Seat {
 
     @Id
     @Column(name = "seat_id")
-    private Long seat_id;
+    private Long seatId;
 
     @Column(name = "seat_number")
-    private String seat_number;
+    private String seatNumber;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "theater_id", nullable = false)

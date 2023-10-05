@@ -22,15 +22,7 @@ public class MovieService {
   }
 
   public Movie createMovie(Movie movie){
-    Movie movieToSave = new Movie();
-    /*movieToSave.setMovie_name("");
-    movieToSave.setMovie_description("");
-    movieToSave.setGenre("");
-    movieToSave.setAge_restriction(0);
-    movieToSave.setRuntime(0);
-    movieToSave.setTrailer_link("");
-    movieToSave.setPoster_link("");*/
-    return movieRepository.save(movieToSave);
+    return movieRepository.save(movie);
   }
 
 

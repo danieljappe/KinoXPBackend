@@ -22,28 +22,28 @@ public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "movie_id")
-    private Long movie_id;
+    private Long movieId;
 
     @Column(name = "movie_name")
-    private String movie_name;
+    private String movieName;
 
     @Column(name = "movie_description")
-    private String movie_description;
+    private String movieDescription;
 
     @Column(name = "genre")
     private String genre;
 
     @Column(name = "age_restriction")
-    private int age_restriction;
+    private int ageRestriction;
 
     @Column(name = "runtime")
     private int runtime;
 
     @Column(name = "trailer_link")
-    private String trailer_link;
+    private String trailerLink;
 
     @Column(name = "poster_link")
-    private String poster_link;
+    private String posterLink;
 
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Showing> showings;
