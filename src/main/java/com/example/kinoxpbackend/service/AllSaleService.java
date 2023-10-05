@@ -18,29 +18,18 @@ import java.util.stream.Collectors;
 @Service
 public class AllSaleService {
 
-
-    private final SaleConverter saleConverter;
-    private final SaleRepository saleRepository;
-    private final SaleItemConverter saleItemConverter;
-    private final SaleItemRepository saleItemRepository;
-    private final SaleDetailConverter saleDetailConverter;
-    private final SaleDetailRepository saleDetailRepository;
-
     @Autowired
-    public AllSaleService(SaleConverter saleConverter,
-                          SaleRepository saleRepository,
-                          SaleItemConverter saleItemConverter,
-                          SaleItemRepository saleItemRepository,
-                          SaleDetailConverter saleDetailConverter,
-                          SaleDetailRepository saleDetailRepository) {
-        this.saleConverter = saleConverter;
-        this.saleRepository = saleRepository;
-        this.saleItemConverter = saleItemConverter;
-        this.saleItemRepository = saleItemRepository;
-        this.saleDetailConverter = saleDetailConverter;
-        this.saleDetailRepository = saleDetailRepository;
-    }
-
+    SaleItemConverter saleItemConverter;
+    @Autowired
+    SaleItemRepository saleItemRepository;
+    @Autowired
+    SaleDetailConverter saleDetailConverter;
+    @Autowired
+    SaleDetailRepository saleDetailRepository;
+    @Autowired
+    SaleConverter saleConverter;
+    @Autowired
+    SaleRepository saleRepository;
 
     // Methods for Sale CRUD operations
     public SaleDTO createSale(SaleDTO saleDTO) {
@@ -67,7 +56,6 @@ public class AllSaleService {
                 .orElseThrow(() -> new EntityNotFoundException("Sale not found for id: " + saleId));
 
         existingSale.setSaleDate(updatedSaleDTO.saleDate());
-        //existingSale.setSaleDetails(updatedSaleDTO.saleDetails());
         existingSale.setCustomerPhone(updatedSaleDTO.customerPhone());
 
         Sale updatedSale = saleRepository.save(existingSale);

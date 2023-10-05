@@ -11,19 +11,21 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @CrossOrigin
-@org.springframework.web.bind.annotation.RestController
+@RestController
 public class MovieRestController {
 
     @Autowired
     MovieService movieService;
 
-
+/*
     @GetMapping("/movies")
     public ResponseEntity<List<MovieDTO>> getAllMovies() {
         List<MovieDTO> movies = movieService.getAllMovies();
         return new ResponseEntity<>(movies, HttpStatus.OK);
     }
 
+
+ */
     @PostMapping("/movie")
     public ResponseEntity<Movie> postMovie(@RequestBody Movie movie) {
         Movie createdMovie = movieService.createMovie(movie);
