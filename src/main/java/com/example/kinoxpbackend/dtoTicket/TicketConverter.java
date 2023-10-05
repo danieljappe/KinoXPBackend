@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Component
 public class TicketConverter {
@@ -16,11 +17,9 @@ public class TicketConverter {
                 ticket.getSeat().getSeatId());
     }
 
-    public List<TicketDTO> toDTOList(List<Ticket> tickets){
-        List<TicketDTO> ticketDTOList = new ArrayList<>();
-        for (int i = 0; i < tickets.size(); i++) {
-            ticketDTOList.add(toDTO(tickets.get(i)));
-        }
-        return ticketDTOList;
+    public Set<TicketDTO> toDTOSet(Set<Ticket> tickets) {
+        return tickets.stream()
+                .map(this::toDTO)
+                .collect(Collectors.toSet());
     }
 }

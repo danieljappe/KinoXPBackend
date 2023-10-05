@@ -22,7 +22,7 @@ public class ShowingConverter {
     public ShowingDTO toDTO(Showing showing){
         return new ShowingDTO(showing.getShowingId(), showing.getMovie().getMovieId(),
                 showing.getTheater().getTheaterId(), showing.getShowingDateTime(),
-                ticketConverter.toDTOList((List<Ticket>) showing.getTickets()));
+                ticketConverter.toDTOSet(showing.getTickets()));
 
     }
 

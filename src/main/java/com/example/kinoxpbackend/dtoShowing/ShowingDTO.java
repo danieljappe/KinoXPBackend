@@ -11,5 +11,5 @@ import java.util.List;
 import java.util.Set;
 
 public record ShowingDTO(Long showingId, Long movieId, Long theaterId, LocalDateTime showingDateTime,
-                         List<TicketDTO> ticketDTOList) {
+                         Set<TicketDTO> ticketDTOSet) {
 }
