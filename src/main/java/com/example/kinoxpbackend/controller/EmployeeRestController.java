@@ -2,6 +2,7 @@ package com.example.kinoxpbackend.controller;
 
 import com.example.kinoxpbackend.dtoEmployee.EmployeeDTO;
 import com.example.kinoxpbackend.dtoEmployee.EmployeePasswordDTO;
+import com.example.kinoxpbackend.model.Employee;
 import com.example.kinoxpbackend.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
