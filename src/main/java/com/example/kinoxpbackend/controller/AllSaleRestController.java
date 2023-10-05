@@ -2,6 +2,7 @@ package com.example.kinoxpbackend.controller;
 
 
 import com.example.kinoxpbackend.dtoSale.SaleDTO;
+import com.example.kinoxpbackend.dtoSale.SaleItemDTO;
 import com.example.kinoxpbackend.service.AllSaleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class AllSaleRestController {
         this.allSaleService = allSaleService;
     }
 
-    //todo rest controller til sale
+    // rest controller til sale
 
     @PostMapping
     public ResponseEntity<SaleDTO> createSale(@RequestBody SaleDTO saleDTO) {
@@ -48,5 +49,27 @@ public class AllSaleRestController {
 
     //todo rest controller til  saleitem
 
+    @PostMapping("/sale-items")
+    public ResponseEntity<SaleItemDTO> createSaleItem(@RequestBody SaleItemDTO
+                                                              saleItemDTO) {
+        SaleItemDTO createdSaleItem = allSaleService.createSaleItem(saleItemDTO);
+        return new ResponseEntity<>(createdSaleItem, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/sale-items/{saleItemId}")
+    public ResponseEntity<SaleItemDTO> getSaleItemById(@PathVariable long saleItemId) {
+        SaleItemDTO saleItemDTO = allSaleService.getSaleItemById(saleItemId);
+        return new ResponseEntity<>(saleItemDTO, HttpStatus.OK);
+    }
+    @PutMapping("/sale-items/{saleItemId}")
+    public ResponseEntity<SaleItemDTO> updateSaleItem(@PathVariable Long saleItemId, @RequestBody SaleItemDTO updatedSaleItemDTO) {
+        SaleItemDTO updatedSaleItem = allSaleService.updateSaleItem(saleItemId, updatedSaleItemDTO);
+        return new ResponseEntity<>(updatedSaleItem, HttpStatus.OK);
+    }
+    @DeleteMapping("/sale-items/{saleItemId}")
+    public ResponseEntity<Void> deleteSaleItem(@PathVariable long saleItemId) {
+        allSaleService.deleteSaleItem(saleItemId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 
 }

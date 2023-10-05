@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @CrossOrigin
-@RestController
+@org.springframework.web.bind.annotation.RestController
 public class MovieRestController {
 
     @Autowired

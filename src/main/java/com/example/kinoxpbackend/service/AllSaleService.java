@@ -42,7 +42,7 @@ public class AllSaleService {
     }
 
 
-    //todo: Methods for Sale CRUD operations
+    // Methods for Sale CRUD operations
     public SaleDTO createSale(SaleDTO saleDTO) {
         Sale sale = saleConverter.toEntity(saleDTO);
         Sale savedSale = saleRepository.save(sale);
@@ -66,8 +66,9 @@ public class AllSaleService {
         Sale existingSale = saleRepository.findById(saleIdAsInt)
                 .orElseThrow(() -> new EntityNotFoundException("Sale not found for id: " + saleId));
 
-        // Update the existing Sale entity with data from updatedSaleDTO
-        // Be sure to handle the update logic according to your requirements
+        existingSale.setSaleDate(updatedSaleDTO.saleDate());
+        //existingSale.setSaleDetails(updatedSaleDTO.saleDetails());
+        existingSale.setCustomerPhone(updatedSaleDTO.customerPhone());
 
         Sale updatedSale = saleRepository.save(existingSale);
         return saleConverter.toDTO(updatedSale);
@@ -79,7 +80,7 @@ public class AllSaleService {
     }
 
 
-    //todo Methods for SaleItem CRUD operations
+    // Methods for SaleItem CRUD operations
     public SaleItemDTO createSaleItem(SaleItemDTO saleItemDTO) {
         SaleItem saleItem = saleItemConverter.toEntity(saleItemDTO);
         SaleItem savedSaleItem = saleItemRepository.save(saleItem);
@@ -103,6 +104,9 @@ public class AllSaleService {
         SaleItem existingSaleItem = saleItemRepository.findById(saleItemIdAsInt)
                 .orElseThrow(() -> new EntityNotFoundException("SaleItem not found for id: " + saleItemId));
 
+        existingSaleItem.setSaleItemPrice(updatedSaleItemDTO.saleItemPrice());
+        existingSaleItem.setSaleItemName(updatedSaleItemDTO.saleItemName());
+
         SaleItem updatedSaleItem = saleItemRepository.save(existingSaleItem);
         return saleItemConverter.toDTO(updatedSaleItem);
     }
@@ -112,7 +116,7 @@ public class AllSaleService {
         int saleItemIdAsInt = Math.toIntExact(saleItemId);
         saleItemRepository.deleteById(saleItemIdAsInt);
     }
-    //todo Methods for SaleDetail CRUD operations
+    // Methods for SaleDetail CRUD operations
 
     public SaleDetailDTO createSaleDetail(SaleDetailDTO saleDetailDTO) {
         SaleDetail saleDetail = saleDetailConverter.toEntity(saleDetailDTO);
@@ -137,8 +141,9 @@ public class AllSaleService {
         SaleDetail existingSaleDetail = saleDetailRepository.findById(saleDetailIdAsInt)
                 .orElseThrow(() -> new EntityNotFoundException("SaleDetail not found for id: " + saleDetailId));
 
-        // Update the existing SaleDetail entity with data from updatedSaleDetailDTO
-        // Be sure to handle the update logic according to your requirements
+        existingSaleDetail.setSale(updatedSaleDetailDTO.sale());
+        existingSaleDetail.setSaleItem(updatedSaleDetailDTO.saleItem());
+        existingSaleDetail.setQuantity(updatedSaleDetailDTO.quantity());
 
         SaleDetail updatedSaleDetail = saleDetailRepository.save(existingSaleDetail);
         return saleDetailConverter.toDTO(updatedSaleDetail);
