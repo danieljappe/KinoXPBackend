@@ -26,8 +26,8 @@ public class InitData implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Employee empl1 = new Employee(0L, "pass1", false);
-        Employee empl2 = new Employee(0L, "pass2", true);
+        Employee empl1 = new Employee(0L, "pass1", false, "employee1_Name");
+        Employee empl2 = new Employee(0L, "pass2", true, "employee2_Name");
         employeeRepository.save(empl1);
         employeeRepository.save(empl2);
 
