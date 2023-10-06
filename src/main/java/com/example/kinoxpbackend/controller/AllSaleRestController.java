@@ -2,12 +2,15 @@ package com.example.kinoxpbackend.controller;
 
 
 import com.example.kinoxpbackend.dtoSale.SaleDTO;
+import com.example.kinoxpbackend.dtoSale.SaleDetailDTO;
 import com.example.kinoxpbackend.dtoSale.SaleItemDTO;
 import com.example.kinoxpbackend.service.AllSaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -25,7 +28,7 @@ public class AllSaleRestController {
     }
 
     @GetMapping("/{saleId}")
-    public ResponseEntity<SaleDTO> getSaleById(@PathVariable long saleId) {
+    public ResponseEntity<SaleDTO> getSaleById(@PathVariable Long saleId) {
         SaleDTO saleDTO = allSaleService.getSaleById(saleId);
         return new ResponseEntity<>(saleDTO, HttpStatus.OK);
 
@@ -55,7 +58,7 @@ public class AllSaleRestController {
     }
 
     @GetMapping("/sale-items/{saleItemId}")
-    public ResponseEntity<SaleItemDTO> getSaleItemById(@PathVariable long saleItemId) {
+    public ResponseEntity<SaleItemDTO> getSaleItemById(@PathVariable Long saleItemId) {
         SaleItemDTO saleItemDTO = allSaleService.getSaleItemById(saleItemId);
         return new ResponseEntity<>(saleItemDTO, HttpStatus.OK);
     }
@@ -65,9 +68,49 @@ public class AllSaleRestController {
         return new ResponseEntity<>(updatedSaleItem, HttpStatus.OK);
     }
     @DeleteMapping("/sale-items/{saleItemId}")
-    public ResponseEntity<Void> deleteSaleItem(@PathVariable long saleItemId) {
+    public ResponseEntity<Void> deleteSaleItem(@PathVariable Long saleItemId) {
         allSaleService.deleteSaleItem(saleItemId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    //TODO restcontroller til saleDetails
+/*
+    @PostMapping
+    public ResponseEntity<SaleDetailDTO> createSaleDetail(@RequestBody SaleDetailDTO saleDetailDTO) {
+        SaleDetailDTO createdSaleDetail = allSaleService.createSaleDetail(saleDetailDTO);
+        return new ResponseEntity<>(createdSaleDetail, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{saleDetailId}")
+    public ResponseEntity<SaleDetailDTO> getSaleDetailById(@PathVariable Long saleDetailId) {
+        SaleDetailDTO saleDetailDTO = allSaleService.getSaleDetailById(saleDetailId);
+        return new ResponseEntity<>(saleDetailDTO, HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<SaleDetailDTO>> getAllSaleDetails() {
+        List<SaleDetailDTO> saleDetailDTOs = allSaleService.getAllSaleDetails();
+        return new ResponseEntity<>(saleDetailDTOs, HttpStatus.OK);
+    }
+
+    @PutMapping("/{saleDetailId}")
+    public ResponseEntity<SaleDetailDTO> updateSaleDetail(
+            @PathVariable Long saleDetailId,
+            @RequestBody SaleDetailDTO updatedSaleDetailDTO
+    ) {
+        SaleDetailDTO updatedSaleDetail = allSaleService.updateSaleDetail(saleDetailId, updatedSaleDetailDTO);
+        return new ResponseEntity<>(updatedSaleDetail, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{saleDetailId}")
+    public ResponseEntity<Void> deleteSaleDetail(@PathVariable Long saleDetailId) {
+        allSaleService.deleteSaleDetail(saleDetailId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+
+ */
+
+
 
 }

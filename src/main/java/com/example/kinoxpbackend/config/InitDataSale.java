@@ -26,22 +26,40 @@ public class InitDataSale implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         SaleItem saleItem = new SaleItem();
+        SaleItem saleItem2 = new SaleItem();
         saleItem.setSaleItemName("popcorn");
         saleItem.setSaleItemPrice(10);
 
+        saleItem2.setSaleItemName("Colo");
+        saleItem2.setSaleItemPrice(5);
+
         saleItemRepository.save(saleItem);
 
+        saleItemRepository.save(saleItem2);
+
         Sale sale = new Sale();
-        sale.setSaleDate(new Date());
+        Sale sale2 = new Sale();
+
+        sale.setSaleDate(new Date(111101));
+        sale2.setSaleDate(new Date(220101));
+
         sale.setCustomerPhone(60482099);
+        sale2.setCustomerPhone(12345678);
 
         saleRepository.save(sale);
+        saleRepository.save(sale2);
 
         SaleDetail saleDetail = new SaleDetail();
+        SaleDetail saleDetail2 = new SaleDetail();
+
         saleDetail.setSale(sale);
         saleDetail.setSaleItem(saleItem);
 
+        saleDetail2.setSale(sale2);
+        saleDetail2.setSaleItem(saleItem2);
+
         saleDetailRepository.save(saleDetail);
+        saleDetailRepository.save(saleDetail2);
 
 
 
