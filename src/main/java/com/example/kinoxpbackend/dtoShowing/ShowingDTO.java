@@ -10,6 +10,5 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
-public record ShowingDTO(Long showingId, Long movieId, Long theaterId, LocalDateTime showingDateTime,
-                         Set<TicketDTO> ticketDTOSet) {
+public record ShowingDTO(Long movieId, Long theaterId, LocalDateTime showingDateTime) {
 }
