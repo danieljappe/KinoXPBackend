@@ -15,6 +15,7 @@ public class SaleDetailConverter {
         );
     }
 
+
     public SaleDetail toEntity(SaleDetailDTO saleDetailDTO) {
         SaleDetail saleDetail = new SaleDetail();
         saleDetail.setSaleDetailId(saleDetailDTO.saleDetailID());
