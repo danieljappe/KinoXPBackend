@@ -76,16 +76,23 @@ public class TicketService {
         return ticketRepository.save(ticket);
     }
 
-    public Ticket updateTicket(Long id, Ticket ticket){
+    public TicketDTO updateTicket(Long id, TicketDTO ticketDTO){
         Optional<Ticket> optionalTicket = ticketRepository.findById(id);
 
         if (optionalTicket.isPresent()){
             Ticket ticketToUpdate = optionalTicket.get();
-            ticketToUpdate.setCustomer(ticket.getCustomer());
-            ticketToUpdate.setShowing(ticket.getShowing());
-            ticketToUpdate.setSeat(ticket.getSeat());
+            Optional<Customer> customer = customerRepository.findById(ticketDTO.customerPhone());
+            Optional<Showing> showing = showingRepository.findById(ticketDTO.showingId());
+            Optional<Seat> seat = seatRepository.findById(ticketDTO.seatId());
 
-            return ticketRepository.save(ticketToUpdate);
+
+
+            ticketToUpdate.setCustomer(customer.get());
+            ticketToUpdate.setShowing(showing.get());
+            ticketToUpdate.setSeat(seat.get());
+
+            Ticket updatedTicket = ticketRepository.save(ticketToUpdate);
+            return ticketConverter.toDTO(updatedTicket);
 
         }else {
             throw new Error("Ticket with the ID:  " + id + ", does not exist");
