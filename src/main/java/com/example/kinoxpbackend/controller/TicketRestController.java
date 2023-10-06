@@ -37,6 +37,13 @@ public class TicketRestController {
 //TODO getTicket fra customerPhone
 //TODO getTicket fra showingId
 
+
+    @GetMapping("/ticket/{showingId}")
+    public ResponseEntity<List<TicketDTO>> getTicketByShowingId(@PathVariable("showingId")Long showingId){
+        List<TicketDTO> ticketsFromShowingId = ticketService.getTicketFromShowingId(showingId);
+        return new ResponseEntity<>(ticketsFromShowingId,HttpStatus.OK);
+    }
+
 //    @PutMapping("/ticket/{ticket_id}")
 //    public ResponseEntity<Ticket> updateTicket(@PathVariable("ticket_id") Long id, @RequestBody TicketDTO ticket) {
 //        TicketDTO updatedTicket = ticketService.updateTicket(id, ticket);
