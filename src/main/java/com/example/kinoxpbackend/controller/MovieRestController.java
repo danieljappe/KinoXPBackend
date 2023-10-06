@@ -17,7 +17,7 @@ public class MovieRestController {
     @Autowired
     MovieService movieService;
 
-/*
+
     @GetMapping("/movies")
     public ResponseEntity<List<MovieDTO>> getAllMovies() {
         List<MovieDTO> movies = movieService.getAllMovies();
@@ -25,7 +25,7 @@ public class MovieRestController {
     }
 
 
- */
+
     @PostMapping("/movie")
     public ResponseEntity<Movie> postMovie(@RequestBody Movie movie) {
         Movie createdMovie = movieService.createMovie(movie);

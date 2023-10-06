@@ -40,6 +40,21 @@ public class TicketService {
             ticketsDTO.add(ticketConverter.toDTO(ticket));
         }
         return ticketsDTO;
+    }
+
+    public List<TicketDTO> getTicketFromShowingId(Long showingId){
+        Optional<Showing>optionalShowing = showingRepository.findById(showingId);
+        if ((optionalShowing.isPresent())){
+            List<Ticket> tickets = ticketRepository.findByShowing(optionalShowing.get());
+            List<TicketDTO> ticketsDTO = new ArrayList<>();
+
+            for (Ticket ticket : tickets) {
+                ticketsDTO.add(ticketConverter.toDTO(ticket));
+            }
+            return ticketsDTO;
+        }else {
+            throw new RuntimeException();
+        }
 
 
     }
