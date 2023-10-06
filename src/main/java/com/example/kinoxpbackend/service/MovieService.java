@@ -27,10 +27,11 @@ public class MovieService {
         List<Movie> movies = movieRepository.findAll();
         List<MovieDTO> movieDTOList = new ArrayList<>();
         for (int i = 0; i < movies.size(); i++) {
-            movieDTOList.add(movieConverter.toDTO(movies.get(i));
+            movieDTOList.add(movieConverter.toDTO(movies.get(i)));
         }
         return movieDTOList;
     }
+
 
     public Movie createMovie(Movie movie) {
         return movieRepository.save(movie);
