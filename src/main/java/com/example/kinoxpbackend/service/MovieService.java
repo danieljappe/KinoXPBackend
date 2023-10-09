@@ -23,17 +23,22 @@ public class MovieService {
     @Autowired
     MovieConverter movieConverter;
 
-    /*public List<MovieDTO> getAllMovies() {
+    public List<MovieDTO> getAllMovies() {
         List<Movie> movies = movieRepository.findAll();
         List<MovieDTO> movieDTOList = new ArrayList<>();
         for (int i = 0; i < movies.size(); i++) {
-            movieDTOList.add(movieConverter.toDTO(movies.get(i))
+            movieDTOList.add(movieConverter.toDTO(movies.get(i)));
         }
         return movieDTOList;
     }
 
 
-     */
+    public Movie getMovieById(int id) {
+        Optional<Movie> movieOpt = movieRepository.findById(id);
+        // Her bruger jeg en lamda-tadaa
+        return movieOpt.orElseThrow(() -> new RuntimeException("Movie with the ID: " + id + " does not exist"));
+    }
+
     public Movie createMovie(Movie movie) {
         return movieRepository.save(movie);
     }

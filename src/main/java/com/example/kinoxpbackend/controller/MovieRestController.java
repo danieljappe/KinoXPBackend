@@ -17,15 +17,19 @@ public class MovieRestController {
     @Autowired
     MovieService movieService;
 
-/*
+
     @GetMapping("/movies")
     public ResponseEntity<List<MovieDTO>> getAllMovies() {
         List<MovieDTO> movies = movieService.getAllMovies();
         return new ResponseEntity<>(movies, HttpStatus.OK);
     }
 
+    @GetMapping("/movie/{movie_id}")
+    public ResponseEntity<Movie> getMovieById(@PathVariable("movie_id") int id){
+        Movie selectedMovie = movieService.getMovieById(id);
+        return new ResponseEntity<>(selectedMovie, HttpStatus.OK);
+    }
 
- */
     @PostMapping("/movie")
     public ResponseEntity<Movie> postMovie(@RequestBody Movie movie) {
         Movie createdMovie = movieService.createMovie(movie);

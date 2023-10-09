@@ -30,9 +30,10 @@ public class EmployeeRestController {
 
 
     //Controller for Employee Login - needs id and password
-    @GetMapping("/employeeCheck")
+    @PostMapping("/employeeCheck")
     @ResponseStatus(HttpStatus.OK)
     public EmployeeDTO checkEmployee(@RequestBody EmployeePasswordDTO employeePasswordDTO){
+        System.out.println(employeePasswordDTO);
         return employeeService.checkEmployee(employeePasswordDTO);
     }
 
