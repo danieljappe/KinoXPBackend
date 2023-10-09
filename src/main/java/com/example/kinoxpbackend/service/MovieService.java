@@ -1,7 +1,5 @@
 package com.example.kinoxpbackend.service;
 
-import com.example.kinoxpbackend.dtoMovie.MovieConverter;
-import com.example.kinoxpbackend.dtoMovie.MovieDTO;
 import com.example.kinoxpbackend.exception.RestExceptionHandler;
 import com.example.kinoxpbackend.model.Movie;
 import com.example.kinoxpbackend.repository.MovieRepository;
@@ -11,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,6 +29,11 @@ public class MovieService {
         return movieDTOList;
     }
 
+    public Movie getMovieById(int id) {
+        Optional<Movie> movieOpt = movieRepository.findById(id);
+        // Her bruger jeg en lamda-tadaa
+        return movieOpt.orElseThrow(() -> new RuntimeException("Movie with the ID: " + id + " does not exist"));
+    }
 
     public Movie createMovie(Movie movie) {
         return movieRepository.save(movie);
