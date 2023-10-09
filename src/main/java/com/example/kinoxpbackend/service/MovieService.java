@@ -1,7 +1,5 @@
 package com.example.kinoxpbackend.service;
 
-import com.example.kinoxpbackend.dtoMovie.MovieConverter;
-import com.example.kinoxpbackend.dtoMovie.MovieDTO;
 import com.example.kinoxpbackend.exception.RestExceptionHandler;
 import com.example.kinoxpbackend.model.Movie;
 import com.example.kinoxpbackend.repository.MovieRepository;
@@ -20,11 +18,18 @@ public class MovieService {
 
     @Autowired
     MovieRepository movieRepository;
+    @Autowired
+    MovieConverter movieConverter;
 
-    public List<Movie> getAllMovies() {
+    public List<MovieDTO> getAllMovies() {
         List<Movie> movies = movieRepository.findAll();
-        return movies;
+        List<MovieDTO> movieDTOList = new ArrayList<>();
+        for (int i = 0; i < movies.size(); i++) {
+            movieDTOList.add(movieConverter.toDTO(movies.get(i)));
+        }
+        return movieDTOList;
     }
+
 
     public Movie getMovieById(int id) {
         Optional<Movie> movieOpt = movieRepository.findById(id);

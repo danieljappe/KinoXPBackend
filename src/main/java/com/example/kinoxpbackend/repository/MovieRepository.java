@@ -11,5 +11,5 @@ public interface MovieRepository extends JpaRepository<Movie, Integer>{ //todo: 
 
     //List<Movie> findAllByMovieName(String movie_name);
 
-    //Movie findByMovieId(Long id);
+    Movie findByMovieId(Long id);
 }
