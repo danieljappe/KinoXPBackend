@@ -26,9 +26,13 @@ public class Employee {
     @Column(name = "is_operator")
     private boolean isOperator;
 
-    public Employee(Long employeeId, boolean isOperator){
+    @Column(name = "employee_name")
+    private String employeeName;
+
+    public Employee(Long employeeId, boolean isOperator, String employeeName){
         this.employeeId = employeeId;
         this.isOperator = isOperator;
+        this.employeeName = employeeName;
     }
 
 
