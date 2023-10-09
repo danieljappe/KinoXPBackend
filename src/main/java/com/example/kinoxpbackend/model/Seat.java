@@ -1,5 +1,6 @@
 package com.example.kinoxpbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,10 +27,12 @@ public class Seat {
     @Column(name = "seat_number")
     private String seatNumber;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "theater_id", nullable = false)
     private Theater theater;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "seat", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Ticket> tickets;
 

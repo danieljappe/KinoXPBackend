@@ -9,23 +9,14 @@ import java.util.Set;
 
 @Component
 public class SaleConverter {
-    private Set<SaleDetailDTO> convertSaleDetailsToDTOs(Set<SaleDetail> saleDetails) {
-        Set<SaleDetailDTO> saleDetailDTOs = new HashSet<>();
-
-        for (SaleDetail saleDetail : saleDetails) {
-            SaleDetailDTO saleDetailDTO = new SaleDetailDTO(saleDetail.getSaleDetailId(), saleDetail.getSale(), saleDetail.getSaleItem(), saleDetail.getQuantity());
-            saleDetailDTOs.add(saleDetailDTO);
-        }
-
-        return saleDetailDTOs;
-    }
 
     public SaleDTO toDTO(Sale sale) {
-        Set<SaleDetailDTO> saleDetailDTOs = convertSaleDetailsToDTOs(sale.getSaleDetails());
+       // Set<SaleDetailDTO> saleDetailDTOs = convertSaleDetailsToDTOs(sale.getSaleDetails());
 
-        return new SaleDTO(sale.getSaleId(), sale.getSaleDate(), sale.getCustomerPhone(), saleDetailDTOs);
+        return new SaleDTO(sale.getSaleId(),
+                sale.getSaleDate(),
+                sale.getCustomerPhone());
     }
-
 
     public Sale toEntity(SaleDTO saleDTO) {
         Sale sale = new Sale();
@@ -36,6 +27,18 @@ public class SaleConverter {
         sale.setSaleDetails(sale.getSaleDetails());
         return sale;
     }
+
+       /* private Set<SaleDetailDTO> convertSaleDetailsToDTOs(Set<SaleDetail> saleDetails) {
+        Set<SaleDetailDTO> saleDetailDTOs = new HashSet<>();
+
+        for (SaleDetail saleDetail : saleDetails) {
+            SaleDetailDTO saleDetailDTO = new SaleDetailDTO(saleDetail.getSaleDetailId(), saleDetail(),
+                    saleDetail.getSaleItem(), saleDetail.getQuantity());
+            saleDetailDTOs.add(saleDetailDTO);
+        }
+
+        return saleDetailDTOs;
+    }*/
 
 }
 

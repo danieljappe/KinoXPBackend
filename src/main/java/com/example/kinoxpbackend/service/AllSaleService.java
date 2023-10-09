@@ -39,8 +39,7 @@ public class AllSaleService {
     }
 
     public SaleDTO getSaleById(Long saleId) {
-        int saleIdAsInt = Math.toIntExact(saleId);
-        Sale sale = saleRepository.findById(saleIdAsInt)
+        Sale sale = saleRepository.findById(saleId)
                 .orElseThrow(() -> new EntityNotFoundException("Sale not found for id: " + saleId));
         return saleConverter.toDTO(sale);
     }
@@ -51,8 +50,7 @@ public class AllSaleService {
     }
 
     public SaleDTO updateSale(Long saleId, SaleDTO updatedSaleDTO) {
-        int saleIdAsInt = Math.toIntExact(saleId);
-        Sale existingSale = saleRepository.findById(saleIdAsInt)
+        Sale existingSale = saleRepository.findById(saleId)
                 .orElseThrow(() -> new EntityNotFoundException("Sale not found for id: " + saleId));
 
         existingSale.setSaleDate(updatedSaleDTO.saleDate());
@@ -63,8 +61,7 @@ public class AllSaleService {
     }
 
     public void deleteSale(Long saleId) {
-        int saleIdAsInt = Math.toIntExact(saleId);
-        saleRepository.deleteById(saleIdAsInt);
+        saleRepository.deleteById(saleId);
     }
 
 
@@ -75,9 +72,8 @@ public class AllSaleService {
         return saleItemConverter.toDTO(savedSaleItem);
     }
 
-    public SaleItemDTO getSaleItemById(long saleItemId) {
-        int saleItemIdAsInt = Math.toIntExact(saleItemId);
-        SaleItem saleItem = saleItemRepository.findById(saleItemIdAsInt)
+    public SaleItemDTO getSaleItemById(Long saleItemId) {
+        SaleItem saleItem = saleItemRepository.findById(saleItemId)
                 .orElseThrow(() -> new EntityNotFoundException("SaleItem not found for id: " + saleItemId));
         return saleItemConverter.toDTO(saleItem);
     }
@@ -87,9 +83,8 @@ public class AllSaleService {
         return saleItems.stream().map(saleItemConverter::toDTO).collect(Collectors.toList());
     }
 
-    public SaleItemDTO updateSaleItem(long saleItemId, SaleItemDTO updatedSaleItemDTO) {
-        int saleItemIdAsInt = Math.toIntExact(saleItemId);
-        SaleItem existingSaleItem = saleItemRepository.findById(saleItemIdAsInt)
+    public SaleItemDTO updateSaleItem(Long saleItemId, SaleItemDTO updatedSaleItemDTO) {
+        SaleItem existingSaleItem = saleItemRepository.findById(saleItemId)
                 .orElseThrow(() -> new EntityNotFoundException("SaleItem not found for id: " + saleItemId));
 
         existingSaleItem.setSaleItemPrice(updatedSaleItemDTO.saleItemPrice());
@@ -101,9 +96,9 @@ public class AllSaleService {
 
 
     public void deleteSaleItem(Long saleItemId) {
-        int saleItemIdAsInt = Math.toIntExact(saleItemId);
-        saleItemRepository.deleteById(saleItemIdAsInt);
+        saleItemRepository.deleteById(saleItemId);
     }
+
     // Methods for SaleDetail CRUD operations
 
     public SaleDetailDTO createSaleDetail(SaleDetailDTO saleDetailDTO) {
@@ -113,8 +108,7 @@ public class AllSaleService {
     }
 
     public SaleDetailDTO getSaleDetailById(Long saleDetailId) {
-        int saleDetailIdAsInt = Math.toIntExact(saleDetailId);
-        SaleDetail saleDetail = saleDetailRepository.findById(saleDetailIdAsInt)
+        SaleDetail saleDetail = saleDetailRepository.findById(saleDetailId)
                 .orElseThrow(() -> new EntityNotFoundException("SaleDetail not found for id: " + saleDetailId));
         return saleDetailConverter.toDTO(saleDetail);
     }
@@ -124,22 +118,22 @@ public class AllSaleService {
         return saleDetails.stream().map(saleDetailConverter::toDTO).collect(Collectors.toList());
     }
 
-    public SaleDetailDTO updateSaleDetail(Long saleDetailId, SaleDetailDTO updatedSaleDetailDTO) {
-        int saleDetailIdAsInt = Math.toIntExact(saleDetailId);
-        SaleDetail existingSaleDetail = saleDetailRepository.findById(saleDetailIdAsInt)
+   public SaleDetailDTO updateSaleDetail(Long saleDetailId, SaleDetailDTO updatedSaleDetailDTO) {
+        SaleDetail existingSaleDetail = saleDetailRepository.findById(saleDetailId)
                 .orElseThrow(() -> new EntityNotFoundException("SaleDetail not found for id: " + saleDetailId));
 
-        existingSaleDetail.setSale(updatedSaleDetailDTO.sale());
-        existingSaleDetail.setSaleItem(updatedSaleDetailDTO.saleItem());
+        existingSaleDetail.setSale(saleConverter.toEntity(updatedSaleDetailDTO.saleDTO()));
+        existingSaleDetail.setSaleItem(saleItemConverter.toEntity(updatedSaleDetailDTO.saleItemDTO()));
         existingSaleDetail.setQuantity(updatedSaleDetailDTO.quantity());
 
         SaleDetail updatedSaleDetail = saleDetailRepository.save(existingSaleDetail);
         return saleDetailConverter.toDTO(updatedSaleDetail);
     }
 
-    public void deleteSaleDetail(long saleDetailId) {
-        int saleDetailIdAsInt = Math.toIntExact(saleDetailId);
-        saleDetailRepository.deleteById(saleDetailIdAsInt);
+
+
+    public void deleteSaleDetail(Long saleDetailId) {
+        saleDetailRepository.deleteById(saleDetailId);
     }
 
 

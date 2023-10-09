@@ -5,6 +5,8 @@ import com.example.kinoxpbackend.model.SaleDetail;
 import java.util.Date;
 import java.util.Set;
 
-public record SaleDTO(long saleID, Date saleDate, Integer customerPhone, Set<SaleDetailDTO> saleDetails) {
+public record SaleDTO(Long saleID, Date saleDate, Integer customerPhone) {
+
 
 }
+

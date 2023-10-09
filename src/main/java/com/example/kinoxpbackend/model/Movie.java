@@ -1,5 +1,6 @@
 package com.example.kinoxpbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -42,6 +43,7 @@ public class Movie {
     @Column(name = "poster_link")
     private String posterLink;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Showing> showings;
 

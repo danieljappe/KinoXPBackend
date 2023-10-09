@@ -32,6 +32,7 @@ public class MovieService {
         return movieDTOList;
     }
 
+
     public Movie createMovie(Movie movie) {
         return movieRepository.save(movie);
     }

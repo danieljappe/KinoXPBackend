@@ -18,13 +18,12 @@ public class TicketConverter {
     CustomerConverter customerConverter;
 
     public TicketDTO toDTO(Ticket ticket){
-        return new TicketDTO(ticket.getTicketId(),customerConverter.toDTO(ticket.getCustomer()),ticket.getShowing().getShowingId(),
-                ticket.getSeat().getSeatId());
+        return new TicketDTO(
+                ticket.getCustomer().getCustomerPhone(),
+                ticket.getShowing().getShowingId(),
+                ticket.getTicketId()
+        );
     }
 
-    public Set<TicketDTO> toDTOSet(Set<Ticket> tickets) {
-        return tickets.stream()
-                .map(this::toDTO)
-                .collect(Collectors.toSet());
-    }
+
 }
