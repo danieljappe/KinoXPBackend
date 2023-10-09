@@ -1,5 +1,7 @@
 package com.example.kinoxpbackend.service;
 
+import com.example.kinoxpbackend.dtoMovie.MovieConverter;
+import com.example.kinoxpbackend.dtoMovie.MovieDTO;
 import com.example.kinoxpbackend.exception.RestExceptionHandler;
 import com.example.kinoxpbackend.model.Movie;
 import com.example.kinoxpbackend.repository.MovieRepository;
