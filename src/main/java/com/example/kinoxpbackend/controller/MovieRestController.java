@@ -1,6 +1,5 @@
 package com.example.kinoxpbackend.controller;
 
-import com.example.kinoxpbackend.dtoMovie.MovieDTO;
 import com.example.kinoxpbackend.model.Movie;
 import com.example.kinoxpbackend.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @CrossOrigin
-@org.springframework.web.bind.annotation.RestController
+@RestController
 public class MovieRestController {
 
     @Autowired
@@ -22,6 +21,12 @@ public class MovieRestController {
     public ResponseEntity<List<MovieDTO>> getAllMovies() {
         List<MovieDTO> movies = movieService.getAllMovies();
         return new ResponseEntity<>(movies, HttpStatus.OK);
+    }
+
+    @GetMapping("/movie/{movie_id}")
+    public ResponseEntity<Movie> getMovieById(@PathVariable("movie_id") int id){
+        Movie selectedMovie = movieService.getMovieById(id);
+        return new ResponseEntity<>(selectedMovie, HttpStatus.OK);
     }
 
     @PostMapping("/movie")

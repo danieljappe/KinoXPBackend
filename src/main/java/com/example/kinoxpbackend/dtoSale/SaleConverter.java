@@ -2,7 +2,6 @@ package com.example.kinoxpbackend.dtoSale;
 
 import com.example.kinoxpbackend.model.Sale;
 import com.example.kinoxpbackend.model.SaleDetail;
-import com.example.kinoxpbackend.model.SaleItem;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
@@ -12,32 +11,12 @@ import java.util.Set;
 public class SaleConverter {
 
     public SaleDTO toDTO(Sale sale) {
-        Set<SaleDetailDTO> saleDetailDTOs = convertSaleDetailsToDTOs(sale.getSaleDetails());
+       // Set<SaleDetailDTO> saleDetailDTOs = convertSaleDetailsToDTOs(sale.getSaleDetails());
 
-        return new SaleDTO(
-                sale.getSaleId(),
+        return new SaleDTO(sale.getSaleId(),
                 sale.getSaleDate(),
-                sale.getCustomerPhone(),
-                saleDetailDTOs
-        );
+                sale.getCustomerPhone());
     }
-
-    private Set<SaleDetailDTO> convertSaleDetailsToDTOs(Set<SaleDetail> saleDetails) {
-        Set<SaleDetailDTO> saleDetailDTOs = new HashSet<>();
-
-        for (SaleDetail saleDetail : saleDetails) {
-            SaleDetailDTO saleDetailDTO = new SaleDetailDTO(
-                    saleDetail.getSaleDetailId(),
-                    saleDetail.getSale(),
-                    saleDetail.getSaleItem(),
-                    saleDetail.getQuantity()
-            );
-            saleDetailDTOs.add(saleDetailDTO);
-        }
-
-        return saleDetailDTOs;
-    }
-
 
     public Sale toEntity(SaleDTO saleDTO) {
         Sale sale = new Sale();
@@ -48,6 +27,18 @@ public class SaleConverter {
         sale.setSaleDetails(sale.getSaleDetails());
         return sale;
     }
+
+       /* private Set<SaleDetailDTO> convertSaleDetailsToDTOs(Set<SaleDetail> saleDetails) {
+        Set<SaleDetailDTO> saleDetailDTOs = new HashSet<>();
+
+        for (SaleDetail saleDetail : saleDetails) {
+            SaleDetailDTO saleDetailDTO = new SaleDetailDTO(saleDetail.getSaleDetailId(), saleDetail(),
+                    saleDetail.getSaleItem(), saleDetail.getQuantity());
+            saleDetailDTOs.add(saleDetailDTO);
+        }
+
+        return saleDetailDTOs;
+    }*/
 
 }
 

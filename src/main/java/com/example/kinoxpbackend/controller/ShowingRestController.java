@@ -16,6 +16,8 @@ import java.util.List;
 public class ShowingRestController {
 
 
+    //TODO hent showing fra movieId
+
     @Autowired
     ShowingService showingService;
 
@@ -28,21 +30,21 @@ public class ShowingRestController {
 
     @GetMapping("/showing/{showing_id}")
     public ResponseEntity<ShowingDTO> getShowingById(@PathVariable("showing_id") Long showing_id){
-        ShowingDTO showingDTO = showingService.getShowingById(showing_id);
-        return new ResponseEntity<>(showingDTO,HttpStatus.OK);
+        ShowingDTO showing = showingService.getShowingById(showing_id);
+        return new ResponseEntity<>(showing,HttpStatus.OK);
     }
 
 
-    @PostMapping("/showing")
-    public ResponseEntity<Showing> postShowing(@RequestBody Showing showing) {
-        Showing createdShowing = showingService.createShowing(showing);
+    @PostMapping(value ="/showing", consumes = "application/json")
+    public ResponseEntity<Showing> postShowing(@RequestBody ShowingDTO showingDTO) {
+        Showing createdShowing = showingService.createShowing(showingDTO);
         return new ResponseEntity<>(createdShowing, HttpStatus.CREATED);
     }
 
 
     @PutMapping("/showing/{showing_id}")
-    public ResponseEntity<Showing> updateMovie(@PathVariable("showing_id") Long id, @RequestBody Showing showing) {
-        Showing updatedShowing = showingService.updateShowing(id, showing);
+    public ResponseEntity<Showing> updateMovie(@PathVariable("showing_id") Long id, @RequestBody ShowingDTO showingDTO) {
+        Showing updatedShowing = showingService.updateShowing(id, showingDTO);
         return new ResponseEntity<>(updatedShowing, HttpStatus.OK);
     }
 
