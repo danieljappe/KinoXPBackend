@@ -1,5 +1,6 @@
 package com.example.kinoxpbackend.controller;
 
+import com.example.kinoxpbackend.dtoMovie.MovieDTO;
 import com.example.kinoxpbackend.model.Movie;
 import com.example.kinoxpbackend.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
