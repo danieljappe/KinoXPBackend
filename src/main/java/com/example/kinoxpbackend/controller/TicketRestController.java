@@ -44,12 +44,12 @@ public class TicketRestController {
         return new ResponseEntity<>(ticketsFromShowingId,HttpStatus.OK);
     }
 
-//    @PutMapping("/ticket/{ticket_id}")
-//    public ResponseEntity<Ticket> updateTicket(@PathVariable("ticket_id") Long id, @RequestBody TicketDTO ticket) {
-//        TicketDTO updatedTicket = ticketService.updateTicket(id, ticket);
-//        return new ResponseEntity<>(updatedTicket, HttpStatus.OK);
-//    }
-//
+    @PutMapping("/ticket/{ticket_id}")
+    public ResponseEntity<TicketDTO> updateTicket(@PathVariable("ticket_id") Long id, @RequestBody TicketDTO ticket) {
+        TicketDTO updatedTicket = ticketService.updateTicket(id, ticket);
+        return new ResponseEntity<>(updatedTicket, HttpStatus.OK);
+    }
+
 //    @DeleteMapping("/ticket/{ticket_id}")
 //    public ResponseEntity<Ticket> deleteMovie(@PathVariable("ticket_id") Long id){
 //        TicketDTO deletedTicket = ticketService.deleteTicket(id);

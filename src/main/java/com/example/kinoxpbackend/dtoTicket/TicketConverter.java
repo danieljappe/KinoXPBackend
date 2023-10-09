@@ -21,7 +21,7 @@ public class TicketConverter {
         return new TicketDTO(
                 ticket.getCustomer().getCustomerPhone(),
                 ticket.getShowing().getShowingId(),
-                ticket.getTicketId()
+                ticket.getSeat().getSeatId()
         );
     }
 

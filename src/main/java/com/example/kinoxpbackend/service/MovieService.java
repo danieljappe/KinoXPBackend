@@ -33,6 +33,12 @@ public class MovieService {
     }
 
 
+    public Movie getMovieById(int id) {
+        Optional<Movie> movieOpt = movieRepository.findById(id);
+        // Her bruger jeg en lamda-tadaa
+        return movieOpt.orElseThrow(() -> new RuntimeException("Movie with the ID: " + id + " does not exist"));
+    }
+
     public Movie createMovie(Movie movie) {
         return movieRepository.save(movie);
     }

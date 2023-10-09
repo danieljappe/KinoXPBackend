@@ -63,13 +63,15 @@ public class ShowingService {
         Optional<Showing> optionalShowing = showingRepository.findById(id);
 
         if (optionalShowing.isPresent()){
+
+            Showing showing = optionalShowing.get();
+
             Movie movie = movieRepository.findByMovieId(showingDTO.movieId());
 //                .orElseThrow(() -> new RuntimeException("Movie not found"));
             Theater theater = theaterRepository.findById(showingDTO.theaterId())
                     .orElseThrow(() -> new RuntimeException("Theater not found"));
 
-            Showing showing = new Showing();
-            showing.setShowingId(0L);
+
             showing.setMovie(movie);
             showing.setTheater(theater);
             showing.setShowingDateTime(showingDTO.showingDateTime());
