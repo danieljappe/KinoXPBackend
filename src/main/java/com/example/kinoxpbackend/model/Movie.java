@@ -19,6 +19,12 @@ public class Movie {
   @Column(name = "movie_id")
   private Long movieId;
 
+  @Column(name = "trailer_url")
+  private String trailerUrl;
+
+  @Column(name = "age_restriction")
+  private String ageRestriction;
+
   private String title;
   private String year;
   private String rated;
@@ -38,9 +44,6 @@ public class Movie {
   private String metascore;
   private String imdbRating;
   private String imdbVotes;
-
-  @Column(name = "trailer_url")
-  private String trailerUrl;
 
   @Column(unique = true)
   private String imdbID;
