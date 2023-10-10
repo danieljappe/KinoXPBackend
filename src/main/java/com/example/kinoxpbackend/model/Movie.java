@@ -1,7 +1,10 @@
 package com.example.kinoxpbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.Set;
 
 
 @Getter
@@ -50,5 +53,8 @@ public class Movie {
   private String website;
   private String response;
 
-  
+  @JsonBackReference
+  @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  private Set<Showing> showings;
+
 }
