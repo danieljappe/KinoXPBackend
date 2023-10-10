@@ -64,6 +64,18 @@ public class ShowingService {
     }
 
 
+    public List<ShowingDTO> getAllShowingsFromMovieId(Long movieId){
+        List<Showing> showings = showingRepository.findByMovie_MovieId(movieId);
+        List<ShowingDTO>dtoShowings = new ArrayList<>();
+
+        for (Showing showing : showings){
+            dtoShowings.add(showingConverter.toDTO(showing));
+        }
+        return dtoShowings;
+    }
+
+
+
     public Showing createShowing(ShowingDTO showingDTO){
 
         Movie movie = movieRepository.getReferenceById(showingDTO.movieId());

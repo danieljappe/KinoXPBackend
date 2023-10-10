@@ -62,4 +62,10 @@ public class ShowingRestController {
         return new ResponseEntity<>(deletedShowing, HttpStatus.NO_CONTENT);
     }
 
+    @GetMapping("/showing/{movieId}")
+    public ResponseEntity<List<ShowingDTO>> getShowingsFromMovieId(@PathVariable("movieId") Long movieID){
+        return new ResponseEntity<>(showingService.getAllShowingsFromMovieId(movieID),HttpStatus.OK);
+    }
+
+
 }
