@@ -1,4 +1,4 @@
-package com.example.kinoxpbackend.dtoSeat;
+package com.example.kinoxpbackend.dto.dtoSeat;
 
 public record SeatDTO(Long seatId, String seatNumber) {
 }

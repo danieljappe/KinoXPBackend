@@ -1,8 +1,7 @@
 package com.example.kinoxpbackend.controller;
 
-import com.example.kinoxpbackend.dtoEmployee.EmployeeDTO;
-import com.example.kinoxpbackend.dtoEmployee.EmployeePasswordDTO;
-import com.example.kinoxpbackend.model.Employee;
+import com.example.kinoxpbackend.dto.dtoEmployee.EmployeeDTO;
+import com.example.kinoxpbackend.dto.dtoEmployee.EmployeePasswordDTO;
 import com.example.kinoxpbackend.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,7 +27,6 @@ public class EmployeeRestController {
         return ResponseEntity.ok(employeeDTO);
     }
 
-
     //Controller for Employee Login - needs id and password
     @PostMapping("/employeeCheck")
     @ResponseStatus(HttpStatus.OK)
@@ -36,5 +34,4 @@ public class EmployeeRestController {
         System.out.println(employeePasswordDTO);
         return employeeService.checkEmployee(employeePasswordDTO);
     }
-
 }

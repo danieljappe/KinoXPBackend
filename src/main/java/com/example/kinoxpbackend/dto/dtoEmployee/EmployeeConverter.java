@@ -1,7 +1,6 @@
-package com.example.kinoxpbackend.dtoEmployee;
+package com.example.kinoxpbackend.dto.dtoEmployee;
 
 import com.example.kinoxpbackend.model.Employee;
-import jakarta.persistence.Entity;
 import org.springframework.stereotype.Component;
 
 @Component

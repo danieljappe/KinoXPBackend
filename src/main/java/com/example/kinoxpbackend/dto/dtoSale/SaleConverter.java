@@ -1,15 +1,10 @@
-package com.example.kinoxpbackend.dtoSale;
+package com.example.kinoxpbackend.dto.dtoSale;
 
 import com.example.kinoxpbackend.model.Sale;
-import com.example.kinoxpbackend.model.SaleDetail;
 import org.springframework.stereotype.Component;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Component
 public class SaleConverter {
-
     public SaleDTO toDTO(Sale sale) {
        // Set<SaleDetailDTO> saleDetailDTOs = convertSaleDetailsToDTOs(sale.getSaleDetails());
 

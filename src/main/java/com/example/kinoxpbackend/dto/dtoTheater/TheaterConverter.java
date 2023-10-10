@@ -1,4 +1,4 @@
-package com.example.kinoxpbackend.dtoTheater;
+package com.example.kinoxpbackend.dto.dtoTheater;
 
 import com.example.kinoxpbackend.model.Theater;
 import org.springframework.stereotype.Component;

@@ -1,15 +1,10 @@
-package com.example.kinoxpbackend.dtoTicket;
+package com.example.kinoxpbackend.dto.dtoTicket;
 
 
-import com.example.kinoxpbackend.dtoCustomer.CustomerConverter;
+import com.example.kinoxpbackend.dto.dtoCustomer.CustomerConverter;
 import com.example.kinoxpbackend.model.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Component
 public class TicketConverter {

@@ -1,4 +1,4 @@
-package com.example.kinoxpbackend.dtoCustomer;
+package com.example.kinoxpbackend.dto.dtoCustomer;
 
 import com.example.kinoxpbackend.model.Customer;
 import org.springframework.stereotype.Component;

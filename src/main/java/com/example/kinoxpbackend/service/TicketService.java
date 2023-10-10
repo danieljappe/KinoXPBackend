@@ -1,7 +1,7 @@
 package com.example.kinoxpbackend.service;
 
-import com.example.kinoxpbackend.dtoTicket.TicketConverter;
-import com.example.kinoxpbackend.dtoTicket.TicketDTO;
+import com.example.kinoxpbackend.dto.dtoTicket.TicketConverter;
+import com.example.kinoxpbackend.dto.dtoTicket.TicketDTO;
 import com.example.kinoxpbackend.model.Customer;
 import com.example.kinoxpbackend.model.Seat;
 import com.example.kinoxpbackend.model.Showing;

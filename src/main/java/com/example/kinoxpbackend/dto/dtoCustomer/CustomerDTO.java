@@ -1,4 +1,4 @@
-package com.example.kinoxpbackend.dtoCustomer;
+package com.example.kinoxpbackend.dto.dtoCustomer;
 
 public record CustomerDTO(String customerPhone) {
 }

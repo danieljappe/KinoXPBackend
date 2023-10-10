@@ -1,4 +1,4 @@
-package com.example.kinoxpbackend.dtoSale;
+package com.example.kinoxpbackend.dto.dtoSale;
 
 import com.example.kinoxpbackend.model.Sale;
 import com.example.kinoxpbackend.model.SaleDetail;

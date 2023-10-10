@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-
 @Component
 public class InitData implements CommandLineRunner {
 
@@ -19,12 +18,12 @@ public class InitData implements CommandLineRunner {
 
     @Autowired
     TheaterRepository theaterRepository;
+
     @Autowired
     SeatRepository seatRepository;
 
-
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
 
         Employee empl1 = new Employee(0L, "pass1", false, "employee1_Name");
         Employee empl2 = new Employee(0L, "pass2", true, "employee2_Name");
@@ -32,7 +31,6 @@ public class InitData implements CommandLineRunner {
         employeeRepository.save(empl2);
 
         theaterAndSeatInitData();
-
     }
 
     public void theaterAndSeatInitData() {
