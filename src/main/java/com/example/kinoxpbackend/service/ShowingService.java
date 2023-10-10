@@ -52,7 +52,7 @@ public class ShowingService {
 
     public Showing createShowing(ShowingDTO showingDTO){
 
-        Movie movie = movieRepository.getReferenceById(showingDTO.movieOmdbResponse());
+        Movie movie = movieRepository.getReferenceById(showingDTO.movieId());
 //                .orElseThrow(() -> new RuntimeException("Movie not found"));
         Theater theater = theaterRepository.findById(showingDTO.theaterId())
                 .orElseThrow(() -> new RuntimeException("Theater not found"));
@@ -74,7 +74,7 @@ public class ShowingService {
 
             Showing showing = optionalShowing.get();
 
-            Movie movie = movieRepository.getReferenceById(showingDTO.movieOmdbResponse());
+            Movie movie = movieRepository.getReferenceById(showingDTO.movieId());
 //                .orElseThrow(() -> new RuntimeException("Movie not found"));
             Theater theater = theaterRepository.findById(showingDTO.theaterId())
                     .orElseThrow(() -> new RuntimeException("Theater not found"));
