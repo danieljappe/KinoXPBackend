@@ -8,6 +8,8 @@ import com.example.kinoxpbackend.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class CustomerService {
 
@@ -22,8 +24,15 @@ public class CustomerService {
     public CustomerDTO postCustomer(CustomerDTO customerDTO){
         Customer customer = new Customer();
         customer.setCustomerPhone(customerDTO.customerPhone());
-        customerRepository.save(customer);
-        return customerConverter.toDTO(customer);
+
+        Optional<Customer> optC1 = customerRepository.findById(customerDTO.customerPhone());
+        if (optC1.isPresent()){
+            return customerConverter.toDTO(optC1.get());
+        }else{
+            customerRepository.save(customer);
+            return customerConverter.toDTO(customer);
+        }
+
     }
 
 }
