@@ -1,7 +1,7 @@
 package com.example.kinoxpbackend.service;
 
-import com.example.kinoxpbackend.dtoShowing.ShowingConverter;
-import com.example.kinoxpbackend.dtoShowing.ShowingDTO;
+import com.example.kinoxpbackend.dto.dtoShowing.ShowingConverter;
+import com.example.kinoxpbackend.dto.dtoShowing.ShowingDTO;
 import com.example.kinoxpbackend.model.Movie;
 import com.example.kinoxpbackend.model.Showing;
 import com.example.kinoxpbackend.model.Theater;
@@ -11,6 +11,8 @@ import com.example.kinoxpbackend.repository.TheaterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,9 +30,29 @@ public class ShowingService {
     @Autowired
     ShowingConverter showingConverter;
 
-    public List<Showing> getAllShowings(){
-        return showingRepository.findAll();
+    public List<ShowingDTO> getAllShowings(){
+        List<Showing>showings = showingRepository.findAll();
+        List<ShowingDTO>dtoShowings = new ArrayList<>();
+
+        for (Showing showing : showings){
+            dtoShowings.add(showingConverter.toDTO(showing));
+        }
+
+        return dtoShowings;
     }
+
+    public List<ShowingDTO> getAllShowingsBetween(int months){
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime end = now.plusMonths(months);
+        List<Showing>showings = showingRepository.findByShowingDateTimeBetween(now,end);
+        List<ShowingDTO>dtoShowings = new ArrayList<>();
+
+        for (Showing showing : showings){
+            dtoShowings.add(showingConverter.toDTO(showing));
+        }
+        return dtoShowings;
+    }
+
 
     public ShowingDTO getShowingById(Long id){
         Optional<Showing> optionalShowing = showingRepository.findById(id);
@@ -42,9 +64,21 @@ public class ShowingService {
     }
 
 
+    public List<ShowingDTO> getAllShowingsFromMovieId(Long movieId){
+        List<Showing> showings = showingRepository.findByMovie_MovieId(movieId);
+        List<ShowingDTO>dtoShowings = new ArrayList<>();
+
+        for (Showing showing : showings){
+            dtoShowings.add(showingConverter.toDTO(showing));
+        }
+        return dtoShowings;
+    }
+
+
+
     public Showing createShowing(ShowingDTO showingDTO){
 
-        Movie movie = movieRepository.findByMovieId(showingDTO.movieId());
+        Movie movie = movieRepository.getReferenceById(showingDTO.movieId());
 //                .orElseThrow(() -> new RuntimeException("Movie not found"));
         Theater theater = theaterRepository.findById(showingDTO.theaterId())
                 .orElseThrow(() -> new RuntimeException("Theater not found"));
@@ -66,7 +100,7 @@ public class ShowingService {
 
             Showing showing = optionalShowing.get();
 
-            Movie movie = movieRepository.findByMovieId(showingDTO.movieId());
+            Movie movie = movieRepository.getReferenceById(showingDTO.movieId());
 //                .orElseThrow(() -> new RuntimeException("Movie not found"));
             Theater theater = theaterRepository.findById(showingDTO.theaterId())
                     .orElseThrow(() -> new RuntimeException("Theater not found"));

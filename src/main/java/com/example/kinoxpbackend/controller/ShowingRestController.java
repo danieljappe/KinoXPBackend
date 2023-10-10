@@ -1,7 +1,6 @@
 package com.example.kinoxpbackend.controller;
 
-import com.example.kinoxpbackend.dtoShowing.ShowingDTO;
-import com.example.kinoxpbackend.model.Movie;
+import com.example.kinoxpbackend.dto.dtoShowing.ShowingDTO;
 import com.example.kinoxpbackend.model.Showing;
 import com.example.kinoxpbackend.service.ShowingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +20,19 @@ public class ShowingRestController {
     @Autowired
     ShowingService showingService;
 
+    @GetMapping("/showings/months/{months}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<List<ShowingDTO>> getShowings3Months(@PathVariable("months") int months){
+        List<ShowingDTO> showingDTOS = showingService.getAllShowingsBetween(months);
+        return new ResponseEntity<>(showingDTOS,HttpStatus.OK);
+    }
+
+
+
     @GetMapping("/showings")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<Showing>> getAllShowings(){
-        List<Showing> showings = showingService.getAllShowings();
+    public ResponseEntity<List<ShowingDTO>> getAllShowings(){
+        List<ShowingDTO> showings = showingService.getAllShowings();
         return new ResponseEntity<>(showings, HttpStatus.OK);
     }
 
@@ -53,5 +61,11 @@ public class ShowingRestController {
         Showing deletedShowing = showingService.deleteShowingById(id);
         return new ResponseEntity<>(deletedShowing, HttpStatus.NO_CONTENT);
     }
+
+    @GetMapping("/showing/{movieId}")
+    public ResponseEntity<List<ShowingDTO>> getShowingsFromMovieId(@PathVariable("movieId") Long movieID){
+        return new ResponseEntity<>(showingService.getAllShowingsFromMovieId(movieID),HttpStatus.OK);
+    }
+
 
 }

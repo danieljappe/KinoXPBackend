@@ -1,15 +1,14 @@
 package com.example.kinoxpbackend.repository;
 
-import com.example.kinoxpbackend.model.Employee;
+
+
 import com.example.kinoxpbackend.model.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
+import java.util.Optional;
 
-@org.springframework.stereotype.Repository
-public interface MovieRepository extends JpaRepository<Movie, Integer>{ //todo: Set type of JpaRepository
+public interface MovieRepository extends JpaRepository<Movie, Long> {
+  Optional<Movie> findByImdbID(String imdbId);
 
-    //List<Movie> findAllByMovieName(String movie_name);
-
-    Movie findByMovieId(Long id);
+  Optional<Movie> findByMovieId(Long movieId);
 }

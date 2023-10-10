@@ -1,74 +1,73 @@
 package com.example.kinoxpbackend.service;
 
-import com.example.kinoxpbackend.dtoMovie.MovieConverter;
-import com.example.kinoxpbackend.dtoMovie.MovieDTO;
-import com.example.kinoxpbackend.exception.RestExceptionHandler;
+import com.example.kinoxpbackend.facade.OmdbFacade;
+import com.example.kinoxpbackend.dto.dtoMovie.MovieOmdbResponse;
 import com.example.kinoxpbackend.model.Movie;
 import com.example.kinoxpbackend.repository.MovieRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
-@org.springframework.stereotype.Service
+@Service
 public class MovieService {
 
-    @Autowired
-    MovieRepository movieRepository;
-    @Autowired
-    MovieConverter movieConverter;
+  @Autowired
+  MovieRepository movieRepository;
 
-    public List<MovieDTO> getAllMovies() {
-        List<Movie> movies = movieRepository.findAll();
-        List<MovieDTO> movieDTOList = new ArrayList<>();
-        for (int i = 0; i < movies.size(); i++) {
-            movieDTOList.add(movieConverter.toDTO(movies.get(i)));
-        }
-        return movieDTOList;
+  @Autowired
+  OmdbFacade omdbFacade;
+
+  public Movie getMovieByImdbId(String imdbId) {
+    return movieRepository.findByImdbID(imdbId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Movie not found"));
+  }
+
+  public Movie getMovieById(Long movieId) {
+    return movieRepository.findByMovieId(movieId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Movie not found"));
+  }
+
+  public Movie addMovie(String imdbId, String trailerUrl, String ageRestriction) throws JsonProcessingException {
+    MovieOmdbResponse dto = omdbFacade.getMovie(imdbId);
+
+    Movie movie = Movie.builder()
+            .title(dto.getTitle())
+            .year(dto.getYear())
+            .rated(dto.getRated())
+            .released(dto.getReleased())
+            .runtime(dto.getRuntime())
+            .genre(dto.getGenre())
+            .director(dto.getDirector())
+            .writer(dto.getWriter())
+            .actors(dto.getActors())
+            .metascore(dto.getMetascore())
+            .imdbRating(dto.getImdbRating())
+            .imdbVotes(dto.getImdbVotes())
+            .website(dto.getWebsite())
+            .response(dto.getResponse())
+            .plot(dto.getPlot())
+            //.plotDK(dkPlot)
+            .poster(dto.getPoster())
+            .imdbID(dto.getImdbID())
+            .trailerUrl(trailerUrl)
+            .ageRestriction(ageRestriction)
+            .build();
+
+
+    try {
+      movieRepository.save(movie);
+      return movie;
+    } catch (DataIntegrityViolationException e) {
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getRootCause().getMessage());
+    } catch (Exception e) {
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Could not add movie");
     }
+  }
 
-
-    public Movie getMovieById(int id) {
-        Optional<Movie> movieOpt = movieRepository.findById(id);
-        // Her bruger jeg en lamda-tadaa
-        return movieOpt.orElseThrow(() -> new RuntimeException("Movie with the ID: " + id + " does not exist"));
-    }
-
-    public Movie createMovie(Movie movie) {
-        return movieRepository.save(movie);
-    }
-
-    public Movie updateMovie(int id, Movie movie) {
-        Optional<Movie> movieOpt = movieRepository.findById(id);
-
-        if (movieOpt.isPresent()) {
-            Movie movieToUpdate = movieOpt.get();
-
-            movieToUpdate.setMovieName(movie.getMovieName());
-            movieToUpdate.setMovieDescription(movie.getMovieDescription());
-            movieToUpdate.setGenre(movie.getGenre());
-            movieToUpdate.setAgeRestriction(movie.getAgeRestriction());
-            movieToUpdate.setRuntime(movie.getRuntime());
-            movieToUpdate.setTrailerLink(movie.getTrailerLink());
-            movieToUpdate.setPosterLink(movie.getPosterLink());
-
-            return movieRepository.save(movieToUpdate);
-        } else {
-            throw new Error("Movie with the ID:  " + id + ", does not exist");
-        }
-    }
-
-    public void deleteMovieById(int id) {
-        Optional<Movie> movieOpt = movieRepository.findById(id);
-        if (movieOpt.isPresent()){
-            movieRepository.deleteById(id);
-        } else {
-            throw new Error("Movie with the ID:  " + id + ", does not exist");
-        }
-    }
+  public Movie deleteMovie(String imdbID){
+      Movie movie = movieRepository.findByImdbID(imdbID).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Movie not found"));
+      movieRepository.delete(movie);
+      return movie;
+  }
 }

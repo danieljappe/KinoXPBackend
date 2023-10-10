@@ -18,13 +18,15 @@ public class InitDataSale implements CommandLineRunner {
 
     @Autowired
     SaleRepository saleRepository;
+
     @Autowired
     SaleItemRepository saleItemRepository;
+
     @Autowired
     SaleDetailRepository saleDetailRepository;
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         SaleItem saleItem = new SaleItem();
         SaleItem saleItem2 = new SaleItem();
         saleItem.setSaleItemName("popcorn");
@@ -60,10 +62,5 @@ public class InitDataSale implements CommandLineRunner {
 
         saleDetailRepository.save(saleDetail);
         saleDetailRepository.save(saleDetail2);
-
-
-
     }
-
-
 }
