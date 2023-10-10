@@ -20,6 +20,15 @@ public class ShowingRestController {
     @Autowired
     ShowingService showingService;
 
+    @GetMapping("/showings/months/{months}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<List<ShowingDTO>> getShowings3Months(@PathVariable("months") int months){
+        List<ShowingDTO> showingDTOS = showingService.getAllShowingsBetween(months);
+        return new ResponseEntity<>(showingDTOS,HttpStatus.OK);
+    }
+
+
+
     @GetMapping("/showings")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<ShowingDTO>> getAllShowings(){

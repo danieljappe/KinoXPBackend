@@ -4,6 +4,7 @@ import com.example.kinoxpbackend.dto.dtoMovie.MovieRequest;
 import com.example.kinoxpbackend.model.Movie;
 import com.example.kinoxpbackend.service.MovieService;
 import com.fasterxml.jackson.core.JsonProcessingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
