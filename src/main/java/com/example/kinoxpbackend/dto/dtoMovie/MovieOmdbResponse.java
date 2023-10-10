@@ -10,8 +10,11 @@ import java.util.List;
 @Setter
 public class MovieOmdbResponse {
 
+  @JsonProperty("Trailer")
+  private String trailerUrl;
 
-
+  @JsonProperty("AgeRestriction")
+  private String ageRestriction;
   @JsonProperty("Title")
   private String title;
 

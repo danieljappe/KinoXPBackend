@@ -28,9 +28,8 @@ public class MovieService {
     return movieRepository.findByMovieId(movieId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Movie not found"));
   }
 
-  public Movie addMovie(String imdbId) throws JsonProcessingException {
+  public Movie addMovie(String imdbId, String trailerUrl, String ageRestriction) throws JsonProcessingException {
     MovieOmdbResponse dto = omdbFacade.getMovie(imdbId);
-    //String dkPlot = translator.translate(dto.getPlot());
 
     Movie movie = Movie.builder()
             .title(dto.getTitle())
@@ -51,7 +50,10 @@ public class MovieService {
             //.plotDK(dkPlot)
             .poster(dto.getPoster())
             .imdbID(dto.getImdbID())
+            .trailerUrl(trailerUrl)
+            .ageRestriction(ageRestriction)
             .build();
+
 
     try {
       movieRepository.save(movie);
