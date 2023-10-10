@@ -12,4 +12,6 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
 
     List<Ticket> findByShowing(Showing showing);
 
+    List<Ticket> findByCustomer_CustomerPhone(String phone);
+
 }

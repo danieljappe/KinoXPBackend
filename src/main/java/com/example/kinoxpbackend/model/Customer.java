@@ -21,7 +21,7 @@ public class Customer {
     @Column(name = "customer_phone")
     private String customerPhone;
 
-    @JsonBackReference
+
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Ticket> tickets;
 
