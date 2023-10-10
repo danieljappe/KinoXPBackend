@@ -23,8 +23,8 @@ public class ShowingRestController {
 
     @GetMapping("/showings")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<Showing>> getAllShowings(){
-        List<Showing> showings = showingService.getAllShowings();
+    public ResponseEntity<List<ShowingDTO>> getAllShowings(){
+        List<ShowingDTO> showings = showingService.getAllShowings();
         return new ResponseEntity<>(showings, HttpStatus.OK);
     }
 

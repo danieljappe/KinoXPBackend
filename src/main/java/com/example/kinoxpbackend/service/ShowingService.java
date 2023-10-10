@@ -11,6 +11,7 @@ import com.example.kinoxpbackend.repository.TheaterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,8 +29,15 @@ public class ShowingService {
     @Autowired
     ShowingConverter showingConverter;
 
-    public List<Showing> getAllShowings(){
-        return showingRepository.findAll();
+    public List<ShowingDTO> getAllShowings(){
+        List<Showing>showings = showingRepository.findAll();
+        List<ShowingDTO>dtoShowings = new ArrayList<>();
+
+        for (Showing showing : showings){
+            dtoShowings.add(showingConverter.toDTO(showing));
+        }
+
+        return dtoShowings;
     }
 
     public ShowingDTO getShowingById(Long id){
