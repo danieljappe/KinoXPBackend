@@ -2,9 +2,9 @@
 ###### A School Project at KEA
 * **
 Backend domain:
-'''
+```
 kino-xp-backend.azurewebsites.net
-'''
+```
 ### Specifications
 * 2 movie theatres
 * 1st movie theatre has 25 rows, each with 16 numbered seats.
