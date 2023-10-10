@@ -36,7 +36,7 @@ public class ShowingRestController {
         return new ResponseEntity<>(showings, HttpStatus.OK);
     }
 
-    @GetMapping("/showing/{showing_id}")
+    @GetMapping("/showing/showingid/{showing_id}")
     public ResponseEntity<ShowingDTO> getShowingById(@PathVariable("showing_id") Long showing_id){
         ShowingDTO showing = showingService.getShowingById(showing_id);
         return new ResponseEntity<>(showing,HttpStatus.OK);
@@ -50,19 +50,19 @@ public class ShowingRestController {
     }
 
 
-    @PutMapping("/showing/{showing_id}")
+    @PutMapping("/showing/showingid/{showing_id}")
     public ResponseEntity<Showing> updateMovie(@PathVariable("showing_id") Long id, @RequestBody ShowingDTO showingDTO) {
         Showing updatedShowing = showingService.updateShowing(id, showingDTO);
         return new ResponseEntity<>(updatedShowing, HttpStatus.OK);
     }
 
-    @DeleteMapping("/showing/{showing_id}")
+    @DeleteMapping("/showing/showingid/{showing_id}")
     public ResponseEntity<Showing> deleteMovie(@PathVariable("showing_id") Long id){
         Showing deletedShowing = showingService.deleteShowingById(id);
         return new ResponseEntity<>(deletedShowing, HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/showing/{movieId}")
+    @GetMapping("/showing/movieid/{movieId}")
     public ResponseEntity<List<ShowingDTO>> getShowingsFromMovieId(@PathVariable("movieId") Long movieID){
         return new ResponseEntity<>(showingService.getAllShowingsFromMovieId(movieID),HttpStatus.OK);
     }

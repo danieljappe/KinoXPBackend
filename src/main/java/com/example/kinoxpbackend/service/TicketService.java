@@ -101,14 +101,26 @@ public class TicketService {
 
     }
 
-    public Ticket deleteTicket(Long id){
+    public TicketDTO deleteTicket(Long id){
         Optional<Ticket> ticketOptional = ticketRepository.findById(id);
         if (ticketOptional.isPresent()){
             ticketRepository.deleteById(id);
-            return ticketOptional.get();
+            return ticketConverter.toDTO(ticketOptional.get());
         } else {
             throw new Error("Showing with the ID:  " + id + ", does not exist");
         }
     }
+
+    public List<TicketDTO> getTicketsFromCustomerPhone(String phone){
+        List<Ticket> tickets = ticketRepository.findByCustomer_CustomerPhone(phone);
+        List<TicketDTO> ticketsDTO = new ArrayList<>();
+
+        for (Ticket ticket : tickets) {
+            ticketsDTO.add(ticketConverter.toDTO(ticket));
+        }
+        return ticketsDTO;
+    }
+
+
 
 }
