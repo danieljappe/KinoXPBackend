@@ -21,7 +21,6 @@ public class Ticket {
     @Column(name = "ticket_id")
     private Long ticketId;
 
-
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "customer_phone", nullable = false)
     private Customer customer;
@@ -34,5 +33,4 @@ public class Ticket {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "seat_id", nullable = false)
     private Seat seat;
-
 }

@@ -1,9 +1,9 @@
 package com.example.kinoxpbackend.service;
 
-import com.example.kinoxpbackend.dtoEmployee.EmployeeConverter;
-import com.example.kinoxpbackend.dtoEmployee.EmployeeDTO;
-import com.example.kinoxpbackend.dtoEmployee.EmployeePasswordConverter;
-import com.example.kinoxpbackend.dtoEmployee.EmployeePasswordDTO;
+import com.example.kinoxpbackend.dto.dtoEmployee.EmployeeConverter;
+import com.example.kinoxpbackend.dto.dtoEmployee.EmployeeDTO;
+import com.example.kinoxpbackend.dto.dtoEmployee.EmployeePasswordConverter;
+import com.example.kinoxpbackend.dto.dtoEmployee.EmployeePasswordDTO;
 import com.example.kinoxpbackend.model.Employee;
 import com.example.kinoxpbackend.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;

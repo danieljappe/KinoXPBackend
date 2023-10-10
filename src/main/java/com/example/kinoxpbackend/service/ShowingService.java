@@ -1,7 +1,7 @@
 package com.example.kinoxpbackend.service;
 
-import com.example.kinoxpbackend.dtoShowing.ShowingConverter;
-import com.example.kinoxpbackend.dtoShowing.ShowingDTO;
+import com.example.kinoxpbackend.dto.dtoShowing.ShowingConverter;
+import com.example.kinoxpbackend.dto.dtoShowing.ShowingDTO;
 import com.example.kinoxpbackend.model.Movie;
 import com.example.kinoxpbackend.model.Showing;
 import com.example.kinoxpbackend.model.Theater;
@@ -44,7 +44,7 @@ public class ShowingService {
 
     public Showing createShowing(ShowingDTO showingDTO){
 
-        Movie movie = movieRepository.findByMovieId(showingDTO.movieId());
+        Movie movie = movieRepository.getReferenceById(showingDTO.movieOmdbResponse());
 //                .orElseThrow(() -> new RuntimeException("Movie not found"));
         Theater theater = theaterRepository.findById(showingDTO.theaterId())
                 .orElseThrow(() -> new RuntimeException("Theater not found"));
@@ -66,7 +66,7 @@ public class ShowingService {
 
             Showing showing = optionalShowing.get();
 
-            Movie movie = movieRepository.findByMovieId(showingDTO.movieId());
+            Movie movie = movieRepository.getReferenceById(showingDTO.movieOmdbResponse());
 //                .orElseThrow(() -> new RuntimeException("Movie not found"));
             Theater theater = theaterRepository.findById(showingDTO.theaterId())
                     .orElseThrow(() -> new RuntimeException("Theater not found"));

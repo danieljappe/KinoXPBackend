@@ -1,16 +1,14 @@
 package com.example.kinoxpbackend.controller;
 
 
-import com.example.kinoxpbackend.dtoSale.SaleDTO;
-import com.example.kinoxpbackend.dtoSale.SaleDetailDTO;
-import com.example.kinoxpbackend.dtoSale.SaleItemDTO;
+import com.example.kinoxpbackend.dto.dtoSale.SaleDTO;
+import com.example.kinoxpbackend.dto.dtoSale.SaleDetailDTO;
+import com.example.kinoxpbackend.dto.dtoSale.SaleItemDTO;
 import com.example.kinoxpbackend.service.AllSaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @CrossOrigin

@@ -1,15 +1,12 @@
 package com.example.kinoxpbackend.controller;
 
 
-import com.example.kinoxpbackend.dtoTicket.TicketDTO;
-import com.example.kinoxpbackend.model.Showing;
+import com.example.kinoxpbackend.dto.dtoTicket.TicketDTO;
 import com.example.kinoxpbackend.model.Ticket;
-import com.example.kinoxpbackend.service.ShowingService;
 import com.example.kinoxpbackend.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,7 +24,6 @@ public class TicketRestController {
         List<TicketDTO> tickets = ticketService.getAllTickets();
         return new ResponseEntity<>(tickets, HttpStatus.OK);
     }
-
 
     @PostMapping("/ticket")
     public ResponseEntity<Ticket> postTicket(@RequestBody TicketDTO ticketDTO) {
