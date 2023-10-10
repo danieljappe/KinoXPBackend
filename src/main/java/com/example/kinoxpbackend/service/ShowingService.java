@@ -11,6 +11,7 @@ import com.example.kinoxpbackend.repository.TheaterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -39,6 +40,19 @@ public class ShowingService {
 
         return dtoShowings;
     }
+
+    public List<ShowingDTO> getAllShowingsBetween(int months){
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime end = now.plusMonths(months);
+        List<Showing>showings = showingRepository.findByShowingDateTimeBetween(now,end);
+        List<ShowingDTO>dtoShowings = new ArrayList<>();
+
+        for (Showing showing : showings){
+            dtoShowings.add(showingConverter.toDTO(showing));
+        }
+        return dtoShowings;
+    }
+
 
     public ShowingDTO getShowingById(Long id){
         Optional<Showing> optionalShowing = showingRepository.findById(id);
