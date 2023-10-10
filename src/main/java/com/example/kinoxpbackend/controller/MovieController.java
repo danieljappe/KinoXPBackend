@@ -1,5 +1,6 @@
 package com.example.kinoxpbackend.controller;
 
+import com.example.kinoxpbackend.dto.dtoMovie.MovieRequest;
 import com.example.kinoxpbackend.model.Movie;
 import com.example.kinoxpbackend.service.MovieService;
 import com.fasterxml.jackson.core.JsonProcessingException;
