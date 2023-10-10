@@ -30,4 +30,9 @@ public class MovieController {
         return movieService.addMovie(request.getImdbId(), request.getTrailerUrl(), request.getAgeRestriction());
     }
 
+    @DeleteMapping("/{imdbID}")
+    public Movie deleteMovie(@PathVariable String imdbID){
+        return movieService.deleteMovie(imdbID);
+    }
+
 }
