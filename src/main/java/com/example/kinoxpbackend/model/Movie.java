@@ -39,9 +39,13 @@ public class Movie {
   private String imdbRating;
   private String imdbVotes;
 
+  @Column(name = "trailer_url")
+  private String trailerUrl;
+
   @Column(unique = true)
   private String imdbID;
   private String website;
   private String response;
 
+  
 }

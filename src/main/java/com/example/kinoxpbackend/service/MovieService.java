@@ -52,6 +52,7 @@ public class MovieService {
             .poster(dto.getPoster())
             .imdbID(dto.getImdbID())
             .build();
+
     try {
       movieRepository.save(movie);
       return movie;
