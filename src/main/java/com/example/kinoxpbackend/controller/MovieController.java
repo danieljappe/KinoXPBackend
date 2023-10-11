@@ -16,6 +16,11 @@ public class MovieController {
     @Autowired
     MovieService movieService;
 
+    @GetMapping("/getAll")
+    public Movie[] getAllMovies() {
+        return movieService.getAllMovies();
+    }
+
     @RequestMapping("/imdbid/{imdbId}")
     public Movie getMovie(@PathVariable String imdbId) {
         return movieService.getMovieByImdbId(imdbId);
