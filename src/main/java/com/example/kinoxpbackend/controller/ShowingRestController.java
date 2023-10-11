@@ -44,21 +44,21 @@ public class ShowingRestController {
 
 
     @PostMapping(value ="/showing", consumes = "application/json")
-    public ResponseEntity<Showing> postShowing(@RequestBody ShowingDTO showingDTO) {
-        Showing createdShowing = showingService.createShowing(showingDTO);
+    public ResponseEntity<ShowingDTO> postShowing(@RequestBody ShowingDTO showingDTO) {
+        ShowingDTO createdShowing = showingService.createShowing(showingDTO);
         return new ResponseEntity<>(createdShowing, HttpStatus.CREATED);
     }
 
 
     @PutMapping("/showing/showingid/{showing_id}")
-    public ResponseEntity<Showing> updateMovie(@PathVariable("showing_id") Long id, @RequestBody ShowingDTO showingDTO) {
-        Showing updatedShowing = showingService.updateShowing(id, showingDTO);
+    public ResponseEntity<ShowingDTO> updateMovie(@PathVariable("showing_id") Long id, @RequestBody ShowingDTO showingDTO) {
+        ShowingDTO updatedShowing = showingService.updateShowing(id, showingDTO);
         return new ResponseEntity<>(updatedShowing, HttpStatus.OK);
     }
 
     @DeleteMapping("/showing/showingid/{showing_id}")
-    public ResponseEntity<Showing> deleteMovie(@PathVariable("showing_id") Long id){
-        Showing deletedShowing = showingService.deleteShowingById(id);
+    public ResponseEntity<ShowingDTO> deleteMovie(@PathVariable("showing_id") Long id){
+        ShowingDTO deletedShowing = showingService.deleteShowingById(id);
         return new ResponseEntity<>(deletedShowing, HttpStatus.NO_CONTENT);
     }
 
