@@ -12,7 +12,10 @@ public class ShowingConverter {
     TicketConverter ticketConverter;
 
     public ShowingDTO toDTO(Showing showing){
-        return new ShowingDTO(showing.getMovie().getMovieId(), showing.getTheater().getTheaterId(), showing.getShowingDateTime());
+        return new ShowingDTO(showing.getMovie().getMovieId(),
+                showing.getTheater().getTheaterId(),
+                showing.getShowingDateTime(),
+                showing.getShowingId());
     }
 
 }
