@@ -21,12 +21,12 @@ public class MovieController {
         return movieService.getAllMovies();
     }
 
-    @RequestMapping("/imdbid/{imdbId}")
+    @RequestMapping("/imdb-id/{imdbId}")
     public Movie getMovie(@PathVariable String imdbId) {
         return movieService.getMovieByImdbId(imdbId);
     }
 
-    @RequestMapping("/movieid/{movieId}")
+    @RequestMapping("/movie-id/{movieId}")
     public Movie getMovieById(@PathVariable Long movieId) {
         return movieService.getMovieById(movieId);
     }
