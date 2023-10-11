@@ -11,10 +11,16 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin
 @RequestMapping("api/movies")
+@CrossOrigin
 public class MovieController {
 
     @Autowired
     MovieService movieService;
+
+    @GetMapping("/getAll")
+    public Movie[] getAllMovies() {
+        return movieService.getAllMovies();
+    }
 
     @RequestMapping("/imdbid/{imdbId}")
     public Movie getMovie(@PathVariable String imdbId) {

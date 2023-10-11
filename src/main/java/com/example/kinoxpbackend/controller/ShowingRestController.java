@@ -27,8 +27,6 @@ public class ShowingRestController {
         return new ResponseEntity<>(showingDTOS,HttpStatus.OK);
     }
 
-
-
     @GetMapping("/showings")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<ShowingDTO>> getAllShowings(){

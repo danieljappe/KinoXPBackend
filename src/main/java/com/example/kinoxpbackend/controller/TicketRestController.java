@@ -26,8 +26,8 @@ public class TicketRestController {
     }
 
     @PostMapping("/ticket")
-    public ResponseEntity<Ticket> postTicket(@RequestBody TicketDTO ticketDTO) {
-        Ticket createdTicket = ticketService.createTicket(ticketDTO);
+    public ResponseEntity<TicketDTO> postTicket(@RequestBody TicketDTO ticketDTO) {
+        TicketDTO createdTicket = ticketService.createTicket(ticketDTO);
         return new ResponseEntity<>(createdTicket, HttpStatus.CREATED);
     }
 //TODO getTicket fra customerPhone

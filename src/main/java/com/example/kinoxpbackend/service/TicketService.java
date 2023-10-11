@@ -60,7 +60,7 @@ public class TicketService {
     }
 
 
-    public Ticket createTicket(TicketDTO ticketDTO) {
+    public TicketDTO createTicket(TicketDTO ticketDTO) {
 
         Optional<Customer> customer = customerRepository.findById(ticketDTO.customerPhone());
         Optional<Showing> showing = showingRepository.findById(ticketDTO.showingId());
@@ -73,7 +73,8 @@ public class TicketService {
         ticket.setSeat(seat.get());
 
 
-        return ticketRepository.save(ticket);
+        Ticket savedTicket = ticketRepository.save(ticket);
+        return ticketConverter.toDTO(savedTicket);
     }
 
     public TicketDTO updateTicket(Long id, TicketDTO ticketDTO){

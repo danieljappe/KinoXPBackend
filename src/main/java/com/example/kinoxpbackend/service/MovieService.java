@@ -70,4 +70,8 @@ public class MovieService {
       movieRepository.delete(movie);
       return movie;
   }
+
+  public Movie[] getAllMovies() {
+    return movieRepository.findAll().toArray(new Movie[0]);
+  }
 }
