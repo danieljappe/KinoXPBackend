@@ -34,7 +34,7 @@ public class TicketRestController {
 //TODO getTicket fra showingId
 
 
-    @GetMapping("/ticket/{showingId}")
+    @GetMapping("/ticket/showing-id/{showingId}")
     public ResponseEntity<List<TicketDTO>> getTicketByShowingId(@PathVariable("showingId")Long showingId){
         List<TicketDTO> ticketsFromShowingId = ticketService.getTicketFromShowingId(showingId);
         return new ResponseEntity<>(ticketsFromShowingId,HttpStatus.OK);
@@ -46,13 +46,13 @@ public class TicketRestController {
         return new ResponseEntity<>(updatedTicket, HttpStatus.OK);
     }
 
-    @DeleteMapping("/ticket/{ticket_id}")
+    @DeleteMapping("/ticket/delete/{ticket_id}")
     public ResponseEntity<TicketDTO> deleteMovie(@PathVariable("ticket_id") Long id){
         TicketDTO deletedTicket = ticketService.deleteTicket(id);
         return new ResponseEntity<>(deletedTicket, HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("tickets/{phone}")
+    @GetMapping("tickets/phone/{phone}")
     public ResponseEntity<List<TicketDTO>> getTicketsFromCustomerPhone(@PathVariable("phone")String phone){
         return new ResponseEntity<>(ticketService.getTicketsFromCustomerPhone(phone),HttpStatus.OK);
     }
