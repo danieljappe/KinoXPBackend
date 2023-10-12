@@ -60,7 +60,7 @@ public class TicketService {
     }
 
 
-    public Ticket createTicket(TicketDTO ticketDTO) {
+    public TicketDTO createTicket(TicketDTO ticketDTO) {
 
         Optional<Customer> customer = customerRepository.findById(ticketDTO.customerPhone());
         Optional<Showing> showing = showingRepository.findById(ticketDTO.showingId());
@@ -73,7 +73,8 @@ public class TicketService {
         ticket.setSeat(seat.get());
 
 
-        return ticketRepository.save(ticket);
+        Ticket savedTicket = ticketRepository.save(ticket);
+        return ticketConverter.toDTO(savedTicket);
     }
 
     public TicketDTO updateTicket(Long id, TicketDTO ticketDTO){
@@ -101,14 +102,26 @@ public class TicketService {
 
     }
 
-    public Ticket deleteTicket(Long id){
+    public TicketDTO deleteTicket(Long id){
         Optional<Ticket> ticketOptional = ticketRepository.findById(id);
         if (ticketOptional.isPresent()){
             ticketRepository.deleteById(id);
-            return ticketOptional.get();
+            return ticketConverter.toDTO(ticketOptional.get());
         } else {
             throw new Error("Showing with the ID:  " + id + ", does not exist");
         }
     }
+
+    public List<TicketDTO> getTicketsFromCustomerPhone(String phone){
+        List<Ticket> tickets = ticketRepository.findByCustomer_CustomerPhone(phone);
+        List<TicketDTO> ticketsDTO = new ArrayList<>();
+
+        for (Ticket ticket : tickets) {
+            ticketsDTO.add(ticketConverter.toDTO(ticket));
+        }
+        return ticketsDTO;
+    }
+
+
 
 }

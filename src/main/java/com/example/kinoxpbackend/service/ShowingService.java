@@ -64,7 +64,19 @@ public class ShowingService {
     }
 
 
-    public Showing createShowing(ShowingDTO showingDTO){
+    public List<ShowingDTO> getAllShowingsFromMovieId(Long movieId){
+        List<Showing> showings = showingRepository.findByMovie_MovieId(movieId);
+        List<ShowingDTO>dtoShowings = new ArrayList<>();
+
+        for (Showing showing : showings){
+            dtoShowings.add(showingConverter.toDTO(showing));
+        }
+        return dtoShowings;
+    }
+
+
+
+    public ShowingDTO createShowing(ShowingDTO showingDTO){
 
         Movie movie = movieRepository.getReferenceById(showingDTO.movieId());
 //                .orElseThrow(() -> new RuntimeException("Movie not found"));
@@ -78,10 +90,10 @@ public class ShowingService {
         showing.setShowingDateTime(showingDTO.showingDateTime());
 
         showingRepository.save(showing);
-        return showingRepository.save(showing);
+        return showingConverter.toDTO(showingRepository.save(showing));
     }
 
-    public Showing updateShowing(Long id, ShowingDTO showingDTO){
+    public ShowingDTO updateShowing(Long id, ShowingDTO showingDTO){
         Optional<Showing> optionalShowing = showingRepository.findById(id);
 
         if (optionalShowing.isPresent()){
@@ -99,17 +111,17 @@ public class ShowingService {
             showing.setShowingDateTime(showingDTO.showingDateTime());
 
             showingRepository.save(showing);
-            return showingRepository.save(showing);
+            return showingConverter.toDTO(showingRepository.save(showing));
         }else {
             throw new Error("Showing with the ID:  " + id + ", does not exist");
         }
 
     }
-    public Showing deleteShowingById(Long id) {
+    public ShowingDTO deleteShowingById(Long id) {
         Optional<Showing> showingOpt = showingRepository.findById(id);
         if (showingOpt.isPresent()){
             showingRepository.deleteById(id);
-            return showingOpt.get();
+            return showingConverter.toDTO(showingOpt.get());
         } else {
             throw new Error("Showing with the ID:  " + id + ", does not exist");
         }

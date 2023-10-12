@@ -26,15 +26,15 @@ public class TicketRestController {
     }
 
     @PostMapping("/ticket")
-    public ResponseEntity<Ticket> postTicket(@RequestBody TicketDTO ticketDTO) {
-        Ticket createdTicket = ticketService.createTicket(ticketDTO);
+    public ResponseEntity<TicketDTO> postTicket(@RequestBody TicketDTO ticketDTO) {
+        TicketDTO createdTicket = ticketService.createTicket(ticketDTO);
         return new ResponseEntity<>(createdTicket, HttpStatus.CREATED);
     }
 //TODO getTicket fra customerPhone
 //TODO getTicket fra showingId
 
 
-    @GetMapping("/ticket/{showingId}")
+    @GetMapping("/ticket/showing-id/{showingId}")
     public ResponseEntity<List<TicketDTO>> getTicketByShowingId(@PathVariable("showingId")Long showingId){
         List<TicketDTO> ticketsFromShowingId = ticketService.getTicketFromShowingId(showingId);
         return new ResponseEntity<>(ticketsFromShowingId,HttpStatus.OK);
@@ -46,9 +46,15 @@ public class TicketRestController {
         return new ResponseEntity<>(updatedTicket, HttpStatus.OK);
     }
 
-//    @DeleteMapping("/ticket/{ticket_id}")
-//    public ResponseEntity<Ticket> deleteMovie(@PathVariable("ticket_id") Long id){
-//        TicketDTO deletedTicket = ticketService.deleteTicket(id);
-//        return new ResponseEntity<>(deletedTicket, HttpStatus.NO_CONTENT);
-//    }
+    @DeleteMapping("/ticket/delete/{ticket_id}")
+    public ResponseEntity<TicketDTO> deleteMovie(@PathVariable("ticket_id") Long id){
+        TicketDTO deletedTicket = ticketService.deleteTicket(id);
+        return new ResponseEntity<>(deletedTicket, HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("tickets/phone/{phone}")
+    public ResponseEntity<List<TicketDTO>> getTicketsFromCustomerPhone(@PathVariable("phone")String phone){
+        return new ResponseEntity<>(ticketService.getTicketsFromCustomerPhone(phone),HttpStatus.OK);
+    }
+
 }

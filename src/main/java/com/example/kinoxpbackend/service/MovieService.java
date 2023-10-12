@@ -71,4 +71,14 @@ public class MovieService {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Could not add movie");
     }
   }
+
+  public Movie deleteMovie(String imdbID){
+      Movie movie = movieRepository.findByImdbID(imdbID).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Movie not found"));
+      movieRepository.delete(movie);
+      return movie;
+  }
+
+  public Movie[] getAllMovies() {
+    return movieRepository.findAll().toArray(new Movie[0]);
+  }
 }

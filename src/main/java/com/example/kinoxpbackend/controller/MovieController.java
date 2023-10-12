@@ -8,21 +8,25 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("api/movies")
+@CrossOrigin
 public class MovieController {
 
     @Autowired
     MovieService movieService;
 
-    @RequestMapping("/imdbid/{imdbId}")
+    @GetMapping("/get-all")
+    public Movie[] getAllMovies() {
+        return movieService.getAllMovies();
+    }
+
+    @RequestMapping("/imdb-id/{imdbId}")
     public Movie getMovie(@PathVariable String imdbId) {
         return movieService.getMovieByImdbId(imdbId);
     }
 
-    @RequestMapping("/movieid/{movieId}")
+    @RequestMapping("/movie-id/{movieId}")
     public Movie getMovieById(@PathVariable Long movieId) {
         return movieService.getMovieById(movieId);
     }
@@ -32,9 +36,9 @@ public class MovieController {
         return movieService.addMovie(request.getImdbId(), request.getTrailerUrl(), request.getAgeRestriction());
     }
 
-    @GetMapping("/all")
-    public List<Movie> getAllMovies() {
-        return movieService.getAllMovies();
+    @DeleteMapping("/{imdbID}")
+    public Movie deleteMovie(@PathVariable String imdbID){
+        return movieService.deleteMovie(imdbID);
     }
 
 }
