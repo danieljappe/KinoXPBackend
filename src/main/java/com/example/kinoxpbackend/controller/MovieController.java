@@ -16,7 +16,7 @@ public class MovieController {
     @Autowired
     MovieService movieService;
 
-    @GetMapping("/getAll")
+    @GetMapping("/get-all")
     public Movie[] getAllMovies() {
         return movieService.getAllMovies();
     }
