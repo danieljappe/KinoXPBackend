@@ -8,6 +8,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/movies")
 public class MovieController {
@@ -28,6 +30,11 @@ public class MovieController {
     @PostMapping("/{imdbId}")
     public Movie addMovie(@RequestBody MovieRequest request) throws JsonProcessingException {
         return movieService.addMovie(request.getImdbId(), request.getTrailerUrl(), request.getAgeRestriction());
+    }
+
+    @GetMapping("/all")
+    public List<Movie> getAllMovies() {
+        return movieService.getAllMovies();
     }
 
 }

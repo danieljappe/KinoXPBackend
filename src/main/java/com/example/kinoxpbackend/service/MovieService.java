@@ -11,6 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.awt.*;
+import java.util.List;
+
 @Service
 public class MovieService {
 
@@ -26,6 +29,10 @@ public class MovieService {
 
   public Movie getMovieById(Long movieId) {
     return movieRepository.findByMovieId(movieId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Movie not found"));
+  }
+
+  public List<Movie> getAllMovies() {
+    return movieRepository.findAll();
   }
 
   public Movie addMovie(String imdbId, String trailerUrl, String ageRestriction) throws JsonProcessingException {
