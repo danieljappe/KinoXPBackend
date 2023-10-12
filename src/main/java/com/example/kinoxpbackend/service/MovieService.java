@@ -31,10 +31,6 @@ public class MovieService {
     return movieRepository.findByMovieId(movieId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Movie not found"));
   }
 
-  public List<Movie> getAllMovies() {
-    return movieRepository.findAll();
-  }
-
   public Movie addMovie(String imdbId, String trailerUrl, String ageRestriction) throws JsonProcessingException {
     MovieOmdbResponse dto = omdbFacade.getMovie(imdbId);
 
