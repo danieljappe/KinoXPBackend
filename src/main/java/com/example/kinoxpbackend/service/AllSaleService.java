@@ -89,10 +89,12 @@ public class AllSaleService {
 
         existingSaleItem.setSaleItemPrice(updatedSaleItemDTO.saleItemPrice());
         existingSaleItem.setSaleItemName(updatedSaleItemDTO.saleItemName());
+        existingSaleItem.setPosterPicture(updatedSaleItemDTO.posterPicture()); // Add this line
 
         SaleItem updatedSaleItem = saleItemRepository.save(existingSaleItem);
         return saleItemConverter.toDTO(updatedSaleItem);
     }
+
 
 
     public void deleteSaleItem(Long saleItemId) {

@@ -10,7 +10,8 @@ public class SaleItemConverter {
         return new SaleItemDTO(
                 saleItem.getSaleItemId(),
                 saleItem.getSaleItemName(),
-                saleItem.getSaleItemPrice()
+                saleItem.getSaleItemPrice(),
+                saleItem.getPosterPicture()
         );
     }
 
@@ -19,7 +20,9 @@ public class SaleItemConverter {
         saleItem.setSaleItemId(saleItemDTO.saleItemId());
         saleItem.setSaleItemName(saleItemDTO.saleItemName());
         saleItem.setSaleItemPrice(saleItemDTO.saleItemPrice());
+        saleItem.setPosterPicture(saleItemDTO.posterPicture());
         return saleItem;
     }
+
 
 }

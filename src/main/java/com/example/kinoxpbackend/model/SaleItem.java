@@ -27,6 +27,16 @@ public class SaleItem {
     @Column(name = "sale_item_price")
     private Integer saleItemPrice;
 
+    @Column(name = "poster_picture")
+    private String posterPicture;
+
+
     @OneToMany(mappedBy = "saleItem", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<SaleDetail> saleDetails;
+
+    public SaleItem(String saleItemName, Integer saleItemPrice, String posterPicture) {
+        this.saleItemName = saleItemName;
+        this.saleItemPrice = saleItemPrice;
+        this.posterPicture = posterPicture;
+    }
 }

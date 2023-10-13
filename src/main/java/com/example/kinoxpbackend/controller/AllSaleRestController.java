@@ -50,8 +50,7 @@ public class AllSaleRestController {
     //todo rest controller til  saleitem
 
     @PostMapping("/sale-items")
-    public ResponseEntity<SaleItemDTO> createSaleItem(@RequestBody SaleItemDTO
-                                                              saleItemDTO) {
+    public ResponseEntity<SaleItemDTO> createSaleItem(@RequestBody SaleItemDTO saleItemDTO) {
         SaleItemDTO createdSaleItem = allSaleService.createSaleItem(saleItemDTO);
         return new ResponseEntity<>(createdSaleItem, HttpStatus.CREATED);
     }
@@ -74,11 +73,8 @@ public class AllSaleRestController {
         return new ResponseEntity<>(updatedSaleItem, HttpStatus.OK);
     }
 
-    @DeleteMapping("/sale-items/{saleItemId}")
-    public ResponseEntity<Void> deleteSaleItem(@PathVariable Long saleItemId) {
-        allSaleService.deleteSaleItem(saleItemId);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
+
+
 
     //TODO restcontroller til saleDetails
 
@@ -94,14 +90,7 @@ public class AllSaleRestController {
         return new ResponseEntity<>(saleDetailDTO, HttpStatus.OK);
     }
 
-    /* @GetMapping("")
-     public ResponseEntity<List<SaleDetailDTO>> getAllSaleDetails() {
-         List<SaleDetailDTO> saleDetailDTOs = allSaleService.getAllSaleDetails();
-         return new ResponseEntity<>(saleDetailDTOs, HttpStatus.OK);
-     }
 
-
-     */
     @PutMapping("sale-detail/{saleDetailId}")
     public ResponseEntity<SaleDetailDTO> updateSaleDetail(
             @PathVariable Long saleDetailId,

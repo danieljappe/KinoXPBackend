@@ -15,42 +15,26 @@ public class InitDataSale implements CommandLineRunner {
     SaleRepository saleRepository;
 
     @Autowired
-    SaleItemRepository saleItemRepository;
-
-    @Autowired
     SaleDetailRepository saleDetailRepository;
+
+    private final SaleItemRepository saleItemRepository;
+
+    public InitDataSale(SaleItemRepository saleItemRepository) {
+        this.saleItemRepository = saleItemRepository;
+    }
 
     @Override
     public void run(String... args) {
-        SaleItem saleItem = new SaleItem();
-        SaleItem saleItem2 = new SaleItem();
-        SaleItem saleItem3 = new SaleItem();
-        SaleItem saleItem4 = new SaleItem();
-        SaleItem saleItem5 = new SaleItem();
-        SaleItem saleItem6 = new SaleItem();
-        SaleItem saleItem7 = new SaleItem();
-        SaleItem saleItem8 = new SaleItem();
-        SaleItem saleItem9 = new SaleItem();
+        SaleItem saleItem = new SaleItem("Water bottle", 2, "https://i.pinimg.com/originals/c6/b1/83/c6b183dbdd5e6e76d10fde40212929be.jpg");
+        SaleItem saleItem2 = new SaleItem("Coca Cola bottle", 2, "https://as1.ftcdn.net/v2/jpg/02/94/77/04/1000_F_294770424_28McL2coTqDN3kxWDNDLmCHTyl3e1UBu.jpg");
+        SaleItem saleItem3 = new SaleItem("Fanta bottle", 2, "https://billigfadoel.dk/wp-content/uploads/2022/10/Fanta-Orange-50-cl-plastikflaske-24-stk-bestil-hos-Billigfadoel.jpg");
+        SaleItem saleItem4 = new SaleItem("Popcorn small", 5, "https://roisbros.gr/wp-content/uploads/2019/02/Crepes-and-popcorn-08-scaled.jpg");
+        SaleItem saleItem5 = new SaleItem("Popcorn large", 10,"https://img1.cgtrader.com/items/3142576/7c67c715b1/large/popcorn-box-large-3d-model-max-obj-fbx.jpg");
+        SaleItem saleItem6 = new SaleItem("Haribo Bag", 5,"https://happycandy.co.uk/cdn/shop/products/haribo-supermix-treat-bag-16g-456281_512x512.jpg?v=1677758045");
+        SaleItem saleItem7 = new SaleItem("nachos Plate", 10,"https://seriouseats.com/thmb/YBUAG17xy1nWYGPmFcJKeoODTzk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/cheese-sauce-for-cheese-fries-and-nachos-hero-01-e6ccf966688c43ec8025cf9a19678423.jpg");
+        SaleItem saleItem8 = new SaleItem("crispy Chips", 8,"https://kims.dk/wp-content/uploads/2019/11/Snacks-Chips-Tomat-160g.png");
+        SaleItem saleItem9 = new SaleItem("candy 100 gram", 1, "https://cdn.shopify.com/s/files/1/0366/8685/6236/t/56/assets/20220226_125853-1646039889008.jpg?v=1646039898");
 
-        saleItem.setSaleItemName("Water");
-        saleItem.setSaleItemPrice(2);
-        saleItem2.setSaleItemName("Colo");
-        saleItem2.setSaleItemPrice(2);
-        saleItem3.setSaleItemName("Fanta");
-        saleItem3.setSaleItemPrice(2);
-
-        saleItem4.setSaleItemName("popcorn Small");
-        saleItem4.setSaleItemPrice(5);
-        saleItem5.setSaleItemName("Popcorn big");
-        saleItem5.setSaleItemPrice(10);
-        saleItem6.setSaleItemName("Haribo Bag");
-        saleItem6.setSaleItemPrice(5);
-        saleItem7.setSaleItemName("nachos");
-        saleItem7.setSaleItemPrice(10);
-        saleItem8.setSaleItemName("Chips");
-        saleItem8.setSaleItemPrice(20);
-        saleItem9.setSaleItemName("candy 100 gram");
-        saleItem9.setSaleItemPrice(1);
 
         saleItemRepository.save(saleItem);
         saleItemRepository.save(saleItem2);
@@ -60,6 +44,7 @@ public class InitDataSale implements CommandLineRunner {
         saleItemRepository.save(saleItem6);
         saleItemRepository.save(saleItem7);
         saleItemRepository.save(saleItem8);
+        saleItemRepository.save(saleItem9);
 
 
       /*  Sale sale = new Sale();
