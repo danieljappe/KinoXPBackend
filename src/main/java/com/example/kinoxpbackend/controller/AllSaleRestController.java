@@ -1,22 +1,24 @@
 package com.example.kinoxpbackend.controller;
 
-
 import com.example.kinoxpbackend.dto.dtoSale.SaleDTO;
 import com.example.kinoxpbackend.dto.dtoSale.SaleDetailDTO;
 import com.example.kinoxpbackend.dto.dtoSale.SaleItemDTO;
+import com.example.kinoxpbackend.model.SaleDetail;
 import com.example.kinoxpbackend.service.AllSaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin
 @RequestMapping("/api/sales")
 public class AllSaleRestController {
+
     @Autowired
     AllSaleService allSaleService;
-
 
     // rest controller til sale
     @PostMapping
@@ -45,7 +47,6 @@ public class AllSaleRestController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-
     //todo rest controller til  saleitem
 
     @PostMapping("/sale-items")
@@ -59,6 +60,12 @@ public class AllSaleRestController {
     public ResponseEntity<SaleItemDTO> getSaleItemById(@PathVariable Long saleItemId) {
         SaleItemDTO saleItemDTO = allSaleService.getSaleItemById(saleItemId);
         return new ResponseEntity<>(saleItemDTO, HttpStatus.OK);
+    }
+
+    @GetMapping("/sale-items")
+    public ResponseEntity<List<SaleItemDTO>> getAllSaleItems() {
+        List<SaleItemDTO> saleItems = allSaleService.getAllSaleItems();
+        return new ResponseEntity<>(saleItems, HttpStatus.OK);
     }
 
     @PutMapping("/sale-items/{saleItemId}")
@@ -103,7 +110,6 @@ public class AllSaleRestController {
         SaleDetailDTO updatedSaleDetail = allSaleService.updateSaleDetail(saleDetailId, updatedSaleDetailDTO);
         return new ResponseEntity<>(updatedSaleDetail, HttpStatus.OK);
     }
-
 
     @DeleteMapping("sale-detail/{saleDetailId}")
     public ResponseEntity<Void> deleteSaleDetail(@PathVariable Long saleDetailId) {

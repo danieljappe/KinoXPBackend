@@ -130,12 +130,9 @@ public class AllSaleService {
         return saleDetailConverter.toDTO(updatedSaleDetail);
     }
 
-
-
     public void deleteSaleDetail(Long saleDetailId) {
         saleDetailRepository.deleteById(saleDetailId);
     }
-
 
 }
 

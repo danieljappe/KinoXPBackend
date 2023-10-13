@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 public class CustomerRestController {
 
-
-
     @Autowired
     CustomerService customerService;
 
@@ -22,9 +20,4 @@ public class CustomerRestController {
     public ResponseEntity<CustomerDTO> postCustomer(@RequestBody CustomerDTO customerDTO){
         return new ResponseEntity<>(customerService.postCustomer(customerDTO), HttpStatus.OK);
     }
-
-
-
-
-
 }
